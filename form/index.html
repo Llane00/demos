@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>form demo</title>
+</head>
+<body>
+	<form action="" method="post">
+		<div>
+			<label for="username">姓名：</label>
+			<input type="text" id="username" name="username" placeholder="用户名">
+		</div>
+		<div>
+			<label for="password">密码：</label>
+			<input type="password" id="password" name="password" placeholder="密码">
+		</div>
+		<div>
+			<label>性别：</label>
+			<input type="radio" name="sex" value="male">男
+			<input type="radio" name="sex" value="female">女
+		</div>
+		<div>
+			<label>取向：</label>
+			<input type="radio" name=" sex_orientation" value="male">男
+			<input type="radio" name=" sex_orientation" value="female">女
+		</div>
+		<div>
+			<label>爱好：</label>
+			<input type="checkbox" name="hobbies" value="dota">dota
+			<input type="checkbox" name="hobbies" value="tourism">旅游
+			<input type="checkbox" name="hobbies" value="pet">宠物
+		</div>
+		<div>
+			<label for="commit">评论：</label>
+			<textarea id="commit" name="commit">
+				ddd
+			</textarea>
+		</div>
+		<div>
+			<label for="my_car">我的car：</label>
+			<select id="my_car" name="my_car">
+				<option value="0">萨博</option>
+				<option value="1">奔驰</option>
+				<option value="2">大众</option>
+			</select>
+			<input type="submit" value="提交">
+		</div>
+	</form>
+</body>
+</html>
