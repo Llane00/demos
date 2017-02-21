@@ -2,11 +2,85 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>table</title>
+    <style>
+    .table1{
+        width: 600px;
+        text-align: left;
+        border-collapse: collapse;
+        border-spacing: 0;
+        border: 1px solid #ccc;
+    }
+    .table1 tr{
+        border: 1px solid #ccc;
+    }
+    .table1 tr:nth-child(2n){
+        background-color: #f1f1f1;
+    }
+    .table1 th{
+        padding: 8px;
+        color: #fff;
+        background-color: #4CAF50;
+    }
+    .table1 td{
+        padding: 8px;
+    }
+    .table2{
+        width: 600px;
+        margin-top: 50px;
+        text-align: left;
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+    .table2 tr{
+        border-bottom: 1px solid #ccc;
+    }
+    .table2 tr:nth-child(2n){
+        background-color: #f1f1f1;
+    }
+    .table2 th,.table2 td{
+        padding: 8px;
+    }
+    </style>
 </head>
 <body>
-    <table class="">
-            <tbody><tr>
+    <table class="table1">
+        <tbody>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Points</th>
+            </tr>
+            <tr>
+                <td>Jill</td>
+                <td>Smith</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>Eve</td>
+                <td>Jackson</td>
+                <td>94</td>
+            </tr>
+            <tr>
+                <td>Adam</td>
+                <td>Johnson</td>
+                <td>67</td>
+            </tr>
+            <tr>
+                <td>Bo</td>
+                <td>Nilsson</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>Mike</td>
+                <td>Ross</td>
+                <td>35</td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table2">
+        <tbody>
+            <tr>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Points</th>
