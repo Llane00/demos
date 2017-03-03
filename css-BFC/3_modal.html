@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>modal</title>
+    <style>
+        .layout{
+            width: 600px;
+            margin: 0 auto;
+        }
+        .layout>p{
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .modal{
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        .panel{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 600px;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
+        }
+        .panel header,.panel footer{
+            padding: 1px 16px;
+            color: #fff;
+            background-color: #009688;
+        }
+        .panel .close{
+            font-size: 20px;
+            padding: 16px 8px;
+        }
+        .panel header>span{
+            float: right;
+        }
+        .panel main{
+            padding: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <p>这是页面内容</p>
+        <p>这是页面内容</p>
+        <p>这是页面内容</p>
+        <div class="modal">
+             <div class="panel">
+                <header>
+                    <span class="close">x</span>
+                    <h3>头部</h3>
+                </header>
+                <main>
+                    <p>这是内容</p>
+                    <p>这是内容</p>
+                </main>
+                <footer>
+                    <p>尾部</p>
+                </footer>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

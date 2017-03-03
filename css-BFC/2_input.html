@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>input</title>
+    <style>
+        .layout{
+            width: 600px;
+            margin: 0 auto;
+        }
+        .card{
+            padding-bottom: 16px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2), 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .card h2{
+            padding: 15px 16px;
+            color: #fff;
+            background: #009688;
+        }
+        .card form{
+            margin: 16px;
+        }
+        .card div{
+            margin-top: 16px;
+            overflow: auto;
+        }
+        .card div label{
+            color: #757575;
+        }
+        .card input[type="text"],.card textarea{
+            width: 100%;
+            padding: 8px;
+            display: block;
+            border: none;
+            border-bottom: 1px solid #808080;
+        }
+        .card input[type="submit"]{
+            padding: 8px 16px;
+            color: #FFF;
+            border: none;
+            background: #009688;
+        }
+        .half{
+            float: left;
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <div class="card">
+            <h2>信息收集表</h2>
+            <form action="" method="POST">
+                <div>
+                    <label for="name">姓名</label>
+                    <input id="name" name="name" type="text">
+                </div>
+                <div>
+                    <label for="qq">QQ</label>
+                    <input id="qq" name="qq" type="text">
+                </div>
+                <div>
+                    <label for="words">要说的话</label>
+                    <textarea name="words" id="" cols="30" rows="10"></textarea>
+                </div>
+                <div>
+                    <div class="half">
+                        <input id="milk" name="drinks" type="checkbox">
+                        <label for="milk">Milk</label>
+                        <br>
+                        <input id="sugar" name="drinks" type="checkbox">
+                        <label for="sugar">Sugar</label>
+                        <br>
+                        <input id="lemon" name="drinks" type="checkbox">
+                        <label for="lemon">Lemon</label>
+                    </div>
+                    <div class="half">
+                        <input id="male" name="gender" value="male" checked="" type="radio">
+                        <label for="male">Male</label>
+                        <br>
+                        <input id="female" name="gender" value="female" type="radio">
+                        <label for="female">Female</label>
+                    </div>
+                </div>
+                <div>
+                    <input value="提交" type="submit">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
