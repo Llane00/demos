@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>single_column</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+         #header{
+             height: 60px;
+            text-align: center;
+            background: red;
+        }
+        #main{
+            height: 400px;
+            text-align: center;
+            background: yellow;
+        }
+        #footer{
+            height: 60px;
+            text-align: center;
+            background: green;
+        }
+        .layout{
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <div class="layout">
+           head
+        </div>
+    </div>
+    <div id="main" class="layout">
+        main
+    </div>
+    <div id="footer">
+        <div class="layout">
+            footer
+        </div>
+    </div>
+</body>
+</html>

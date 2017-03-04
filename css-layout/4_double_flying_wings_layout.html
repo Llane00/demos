@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>double_flying_wings_layout</title>
+    <style>
+        #content::after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .main, .aside, .extra{
+            float: left;
+        }
+        .main{
+            width: 100%;
+        }
+        .wrap{
+            margin-left: 100px;
+            margin-right: 100px;
+            height: 600px;
+            background: yellow;
+        }
+        .aside{
+            width: 100px;
+            height: 500px;
+            margin-left: -100%;
+            background: red;
+        }
+        .extra{
+            width: 100px;
+            height: 500px;
+            margin-left: -100px;
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="main">
+            <div class="wrap">main</div>
+        </div>
+        <div class="aside">aside</div>
+        <div class="extra">extra</div>
+    </div>
+</body>
+</html>

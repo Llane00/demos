@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>float_list</title>
+    <style>
+        ul, li{
+            margin: 0;
+            padding: 0;
+        }
+        .layout{
+            width: 800px;
+            margin: 0 auto;
+        }
+        .content h1{
+            padding-bottom: 10px;
+            color: #666;
+            text-align: center;
+            border-bottom: 1px solid #ccc;
+        }
+        .container{
+            margin-left: -10px;
+        }
+        .container::after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .card{
+            float: left;
+            margin-left: 10px;
+            margin-top: 30px;
+            width: 260px;
+            list-style: none;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        .card img{
+            width: 100%;
+            opacity: 0.8;
+        }
+        .card .detail{
+            padding: 1px 16px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="layout content">
+        <h1>风景列表</h1>
+        <ul class="container">
+            <li class="card">
+                <img src="landscape.png" alt="">
+                <div class="detail">
+                    <p>风景如画</p>
+                </div>
+            </li>
+             <li class="card">
+                <img src="landscape.png" alt="">
+                <div class="detail">
+                    <p>风景如画</p>
+                </div>
+            </li>
+             <li class="card">
+                <img src="landscape.png" alt="">
+                <div class="detail">
+                    <p>风景如画</p>
+                </div>
+            </li>
+             <li class="card">
+                <img src="landscape.png" alt="">
+                <div class="detail">
+                    <p>风景如画</p>
+                </div>
+            </li>
+             <li class="card">
+                <img src="landscape.png" alt="">
+                <div class="detail">
+                    <p>风景如画</p>
+                </div>
+            </li>
+             <li class="card">
+                <img src="landscape.png" alt="">
+                <div class="detail">
+                    <p>风景如画</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

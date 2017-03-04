@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>three_columns</title>
+    <style>
+        .content::after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .aside{
+            float: left;
+            width: 100px;
+            height: 500px;
+            background: red;
+        }
+        .extra{
+            float: right;
+            width: 100px;
+            height: 500px;
+            background: green;
+        }
+        .main{
+            margin-left: 100px;
+            margin-right: 100px;
+            height: 600px;
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="aside">aside</div>
+        <div class="extra">extra</div>
+        <div class="main">main</div>
+    </div>
+</body>
+</html>
