@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>pseudo-element</title>
+    <style>
+        .dialog {
+            position: relative;
+            width: 200px;
+            height: 100px;
+            border: 1px solid #ccc;
+            margin: 30px;
+        }
+
+        .type1:before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 10px;
+            display: inline-block;
+            width: 0px;
+            height: 0px;
+            border-top: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid #ccc;
+            border-left: 10px solid transparent;
+        }
+
+        .type2:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 180px;
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border-top: 10px solid red;
+            border-right: 10px solid red;
+            border-bottom: 10px solid transparent;
+            border-left: 10px solid transparent;
+        }
+
+        .type3:before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 10px;
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-top: 1px solid #ccc;
+            border-left: 1px solid #ccc;
+            background: #fff;
+            transform: rotateZ(45deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dialog type1"></div>
+    <div class="dialog type2"></div>
+    <div class="dialog type3"></div>
+</body>
+
+</html>
