@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //splice函数分别实现push、pop、shift、unshift方法
+    var arr = [1,2,3,4,5]
+
+    //push
+    arr.splice(arr.length,1,6);
+    console.log(arr);//[1,2,3,4,5,6]
+
+    //pop
+    arr.splice(arr.length-1,1);
+    console.log(arr)//[1,2,3,4,5]
+
+    //shift
+    arr.splice(0,1);
+    console.log(arr);//[2,3,4,5]
+
+    //unshift
+    arr.splice(0,0,1);
+    console.log(arr);//[1,2,3,4,5]
+
+  </script>
+
+  <script>
+    function squareArr(arr){
+      for(var i = 0; i < arr.length; i++ ){
+        arr[i] = arr[i] * arr[i];
+      }
+      return arr;
+    }
+    var arr = [2, 4, 6]
+    squareArr(arr)
+    console.log(arr) // [4, 16, 36]
+  </script>
+
+  <script>
+  //写一个函数，操作数组，返回一个新数组，新数组中只包含正数，原数组不变
+  function filterPositive(arr){
+    var newArr = [];
+    for(var i = 0; i < arr.length; i++){
+      if(typeof(arr[i]) === "number" && arr[i] > 0){
+        newArr.push(arr[i]);
+      }
+    }
+    return newArr;
+  }
+  var arr = [3, -1,  2,  '饥人谷', true]
+  var newArr = filterPositive(arr)
+  console.log(newArr) //[3, 2]
+  </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //包括min，不包括max
+    function randomInt(min, max){
+      var i = Math.random();
+      var offset = max-min;
+      return Math.floor(i*offset+min);
+    }
+  </script>
+
+  <script>
+    //包括min，不包括max
+    function randomIntContainMax(min, max){
+      var i = Math.random();
+      var offset = max-min+1;
+      return Math.floor(i*offset+min);
+    }
+
+    //检测方法是不是随机
+    var arr = [];
+    for(var i = 0; i < 10000; i++){
+      var value = randomIntContainMax(1,10);
+     
+      if(arr[value] === undefined){
+        arr[value] = 1;
+      }else{
+        arr[value]++;
+      }
+    }
+    console.log(arr);
+  </script>
+
+  <script>
+    function getRandStr(len){
+      //生成一个长度为 n 的随机字符串，字符串字符的取值范围包括0到9，a到 z，A到Z。
+      //补全函数
+      var dict = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      var offset = dict.length;
+      var str = "";
+      for(var i = 0; i < len; i++){
+        var index =  Math.floor(Math.random()*offset);
+        console.log(dict[index]);
+        str += dict[index];
+      }
+      return str;
+    }
+    var str = getRandStr(10); // 0a3iJiRZap
+  </script>
+  
+  <script>
+    //写一个函数，生成一个随机 IP 地址，一个合法的 IP 地址为 0.0.0.0~255.255.255.255
+
+    function getRandIP(){
+      //补全
+      var ip = "";
+      for(var i = 0; i < 4; i++){
+        var str =  Math.floor(Math.random()*256);
+        ip += str;
+        if( i!==3 ){
+          ip += ".";
+        }
+      }
+      return ip;
+    }
+    var ip = getRandIP()
+    console.log(ip) // 10.234.121.45
+  </script>
+
+  <script>
+    function getRandColor(){
+      var dict = "0123456789abcdef";
+      var dictlen = dict.length;
+      var colorStr = "#";
+      for(var i = 0; i < 6; i++){
+        var index = Math.floor(Math.random()*dictlen);
+        colorStr += dict[index];
+      }
+      return colorStr
+    }
+    var color = getRandColor()
+    console.log(color)   // #3e2f1b
+  </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function getChIntv(str) {
+      var startTime = Date.now();
+      var endTime = Date.parse(str);
+      var offSet = endTime - startTime;
+      var days = parseInt(offSet / (24 * 60 * 60 * 1000));
+      var hours = parseInt((offSet % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
+      var minutes = parseInt(((offSet % (24 * 60 * 60 * 1000)) % (60 * 60 * 1000)) / (60 * 1000));
+      var seconds = parseInt((((offSet % (24 * 60 * 60 * 1000)) % (60 * 60 * 1000)) % (60 * 1000)) / 1000);
+      return "距除夕还有 " + days + " 天 " + hours + " 小时 " + minutes + " 分 " + seconds + " 秒";
+    }
+    var str = getChIntv("2018-02-08");
+    console.log(str);
+  </script>
+
+  <script>
+    //把hh-mm-dd格式数字日期改成中文日期
+
+    function getChsDate(str) {
+      var dict = ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十"];
+      var newArr = str.split("-");
+      var dateStr = "";
+      for (var i = 0; i < newArr.length; i++) {
+        newArr[i] = parseInt(newArr[i]).toString(); 
+        for (var j = 0; j < newArr[i].length; j++) {
+          var index = newArr[i][j];
+          dateStr += dict[index];
+        }
+        if (i == 0) {
+          dateStr += "年"
+        }else if (i == 1) {
+          dateStr += "月"
+        }else if (i == 2) {
+          dateStr += "日"
+        }
+      }
+      return dateStr;
+    }
+
+    var str = getChsDate('2015-01-08');
+    console.log(str);  // 二零一五年一月八日
+  </script>
+
+  <script>
+
+    // 刚刚（ t 距当前时间不到1分钟时间间隔）
+    // 3分钟前 (t距当前时间大于等于1分钟，小于1小时)
+    // 8小时前 (t 距离当前时间大于等于1小时，小于24小时)
+    // 3天前 (t 距离当前时间大于等于24小时，小于30天)
+    // 2个月前 (t 距离当前时间大于等于30天小于12个月)
+    // 8年前 (t 距离当前时间大于等于12个月)
+
+    function friendlyDate(time){
+      var now = Date.now();
+      var ms = parseInt(time);
+      var offset = now-ms;
+      var str = "";
+      if(offset>(12*30*24*60*60*1000)){
+        str = parseInt(offset/12*30*24*60*60*1000) + "年前"
+      }else if(offset>30*24*60*60*1000){
+        str = parseInt(offset/(30*24*60*60*1000)) + "个月前"
+      }else if(offset>24*60*60*1000){
+        str = parseInt(offset/(24*60*60*1000)) + "天前"
+      }else if(offset>60*60*1000){
+        str = parseInt(offset/(60*60*1000)) + "小时前"
+      }else if(offset>60*1000){
+        str = parseInt(offset/(60*60*1000)) + "分钟前"
+      }else if(offset>60*1000){
+        str = "刚刚"
+      }else{
+        str="未来"
+      }
+      return str;
+    }
+
+    var str = friendlyDate( '1484286699422') //  1分钟前
+    var str2 = friendlyDate('1483941245793') //4天前
+  </script>
+
+</body>
+
+</html>
