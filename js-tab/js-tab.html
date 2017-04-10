@@ -84,15 +84,15 @@
     var tabHeader = document.querySelector(".tab-header");
     var tabTitles = document.querySelectorAll(".tab-header>li");
     var tabPanels = document.querySelectorAll(".tab-container>li");
-    tabHeader.addEventListener("click", function(e){
+    tabHeader.addEventListener("click", function(e){ //tab-header代理监听
       var clickNode = e.target;
-      if(clickNode.tagName.toLowerCase() === "li"){
-        for(var i = 0; i < tabTitles.length; i++){
+      if(clickNode.tagName.toLowerCase() === "li"){ //只有选中的是li才会触发
+        for(var i = 0; i < tabTitles.length; i++){ //重置tab-header的样式
           tabHeader.children[i].classList.remove("active")
         }
         clickNode.classList.add("active")
         var index = [].indexOf.call(tabTitles, clickNode)
-        for(var i = 0; i < tabPanels.length; i++){
+        for(var i = 0; i < tabPanels.length; i++){ //重置tab-container的样式
           tabPanels[i].classList.remove("active")
         }
         tabPanels[index].classList.add("active")

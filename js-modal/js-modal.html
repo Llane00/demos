@@ -107,11 +107,15 @@
     var btnModal = document.querySelector("#btn-modal");
     var modal = document.querySelector(".modal");
 
-    btnModal.addEventListener("click", function (){
+    //弹出按钮的监听
+    btnModal.addEventListener("click", function (e){
+      e.stopPropagation();
       modal.style.display = "block"
     })
 
+    //modal组件代理监听
     modal.addEventListener("click", function(e){
+      e.stopPropagation();
       var clickNode = e.target 
       if(hasClass(clickNode, "close") || hasClass(clickNode, "btn-cancel") || hasClass(clickNode, "cover")){
         hideModal();
@@ -126,6 +130,7 @@
       modal.style.display = "none"
     }
 
+    //查看目标元素是否有指定class
     function hasClass(element, cls){
       var reg = new RegExp("\\b"+cls+"\\b");
       return element.className.match(reg)
