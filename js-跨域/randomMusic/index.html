@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>JSONP</title>
+  <style>
+    body, h1 {
+      margin: 0;
+      padding: 0;
+    }
+    ul,
+    li {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .card {
+      margin: 20px auto 20px;
+      width: 600px;
+      background: #F4F4F4;
+      border-radius: 4px;
+    }
+    .card>h1 {
+      padding: 10px;
+      font-size: 20px;
+      font-weight: normal;
+      color: #fff;
+      text-align: center;
+      background: #444;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+    }
+    .card .music-ct {
+      text-align: center;
+    }
+    .card .music-ct ul {
+      padding: 30px;
+    }
+    .card #getMore {
+      display: inline-block;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      padding: 10px 15px;
+      color: #fff;
+      background: #999;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>随机歌曲</h1>
+    <div class="music-ct">
+      <ul>
+        <li>《The End Of The World》----Lenka</li>
+      </ul>
+      <a id="getMore">下一首</a>
+    </div>
+  </div>
+  <script>
+    document.querySelector("#getMore").addEventListener("click", function(){
+      var script = document.createElement("script");
+      script.src = "http://api.jirengu.com/fm/getSong.php?channel=4&callback=getSong";
+      document.head.appendChild(script);
+    })
+    function getSong(json){
+      var ul = document.querySelector(".music-ct>ul");
+      var newLi = document.createElement("li");
+      ul.innerHTML = ""
+      newLi.innerText = "《"+ json.song[0].title +"》----"+ json.song[0].artist;
+      ul.appendChild(newLi)
+      // console.log(json.song[0]);
+    }
+  </script>
+</body>
+</html>
