@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>ajax</title>
+</head>
+
+<body>
+  <button id="btn" >提交</button>
+  <script>
+    function ajax(opts) {
+      opts.success = opts.success || function(){};
+      opts.error = opts.error || function(){};
+      opts.type = opts.type || "get";
+      opts.dataType = opts.dataType || "json";
+      opts.data = opts.data || {};
+      var dataStr = "";
+      //拼接提交参数
+      for(var key in opts.data){
+        dataStr += key + '=' + opts.data[key] + "&"
+      }
+
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function(){
+        if(xhr.readyState === 4){
+          if(xhr.status === 200 || xhr.status === 304){
+            if(opts.dataType === "text"){
+              opts.success(xhr.responseText)
+              ajaxIsLock = false//解锁
+            }
+            if(opts.dataType === "json"){
+              var json = JSON.parse(xhr.responseText);
+              opts.success(json)
+              ajaxIsLock = false//解锁
+            }
+          }else{
+          opts.error();
+          }
+        }
+      }
+      //减去最后一位&
+      dataStr = dataStr.substr(0, dataStr.length-1);
+      
+      if(opts.type === "post"){
+        xhr.open(opts.type, opts.url, true)
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhr.send(dataStr);
+      }
+      if(opts.type === "get"){
+        xhr.open(opts.type, opts.url + "?" + dataStr, true)
+        xhr.send();
+      }
+    };
+
+    //状态锁初始状态
+    var ajaxIsLock = false;
+    document.querySelector('#btn').addEventListener('click', function (e){
+      //判断状态锁
+      if(ajaxIsLock){
+        return;
+      }
+      ajaxIsLock = true;//上锁
+      ajax({
+        url: '/login',   //接口地址
+        type: 'get',               // 类型， post 或者 get,
+        data: {
+          username: 'xiaoming',
+          password: 'abcd1234'
+        },
+        success: function (ret) {
+          console.log(ret);       // {status: 0}
+        },
+        error: function () {
+          console.log('出错了')
+        }
+      })
+    });
+  </script>
+</body>
+
+</html>
