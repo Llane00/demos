@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>postMessage</title>
+</head>
+<style>
+	html,body{
+		margin: 0;
+	}
+	input{
+		margin: 20px;
+		width: 200px;
+	}
+</style>
+<body>
+  <input id="input" type="text" placeholder="http://b.test.com:8080/b.html">
+
+  <script>
+    function $(elem){
+      return document.querySelector(elem);
+    }
+    $("#input").addEventListener("input", function(){
+      window.parent.postMessage(this.value, "http://a.test.com:8080/a.html")
+    })
+    window.addEventListener("message", function(e){
+      $("#input").value = e.data;
+      console.log(e.data)
+  })
+  </script>
+  
+</body>
+</html>

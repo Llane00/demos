@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>cors</title>
+</head>
+
+<body>
+  <div class="container">
+    <ul class="news">
+      <li>第11日前瞻：中国冲击4金 博尔特再战</li>
+      <li>男双力争会师决赛 </li>
+      <li>女排将死磕巴西！</li>
+    </ul>
+    <button class="change">换一组</button>
+  </div>
+<script>
+  function $(elem){
+    return document.querySelector(elem);
+  }
+
+  $(".change").addEventListener("click", function(){
+    var xhr = new XMLHttpRequest();
+    xhr.open("get", "http://b.test.com:8080/getNewsCors", true)
+    xhr.send();
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState === 4 && (xhr.status === 200 || 304)){
+        appendHtml(JSON.parse(xhr.responseText))
+      }
+    }
+    window.xhr = xhr;
+  })
+
+  function appendHtml(json){
+    var html = "";
+    for(var i = 0; i < json.length; i++){
+      html += "<li>"+json[i]+"</li>";
+    }
+    console.log(html);
+    $(".news").innerHTML = html;
+  }
+</script>
+</body>
+
+</html>

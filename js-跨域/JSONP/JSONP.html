@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>JSONP</title>
+</head>
+<body>
+  <div class="container">
+    <ul class="news">
+      <li>第11日前瞻：中国冲击4金 博尔特再战</li>
+      <li>男双力争会师决赛 </li> 
+      <li>女排将死磕巴西！</li>
+    </ul>
+    <button class="change">换一组</button>
+  </div>
+  <script>
+    function $(elem){
+      return document.querySelector(elem);
+    }
+
+    $(".change").addEventListener("click", function(){
+      //每次点击都获取新的json数据
+      var script = document.createElement("script");
+      script.src = "http://b.test.com:8080/getNewsJsonp?callback=appendHtml"
+      document.head.appendChild(script)
+      document.head.removeChild(script)//请求已经发出，所以script可以删除
+    })
+
+    function appendHtml(json){
+      var html="";
+      for(var i=0;i<json.length;i++){
+        html+="<li>"+json[i]+"</li>"
+      }
+      console.log(html)
+      $(".news").innerHTML = html;
+    }
+  </script>
+</html>
