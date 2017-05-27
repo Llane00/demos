@@ -1,18 +1,18 @@
-Èç¹ûÄãÏëÒªÔÚ±¾µØÔËĞĞÕâĞ©demo
+å¦‚æœä½ æƒ³è¦åœ¨æœ¬åœ°è¿è¡Œè¿™äº›demo
 
-1. ĞèÒªÔÚ±¾µØhostÎÄ¼şÌí¼ÓÌõ¼ş
+1. éœ€è¦åœ¨æœ¬åœ°hostæ–‡ä»¶æ·»åŠ æ¡ä»¶
 
 127.0.0.1	test.com
 127.0.0.1	a.test.com
 127.0.0.1	b.test.com
 
-2. °²×°node»·¾³£¬²¢ÇÒÔÚnpmÏÂ°²×° server-mock
+2. å®‰è£…nodeç¯å¢ƒï¼Œå¹¶ä¸”åœ¨npmä¸‹å®‰è£… server-mock
 
 npm install -g server-mock
 
-ÏêÏ¸µØÖ·£º
+è¯¦ç»†åœ°å€ï¼š
 [https://www.npmjs.com/package/server-mock](https://www.npmjs.com/package/server-mock)
 
-ÓĞÎÊÌâµÄ»°£¬¿ÉÒÔ·¢ÓÊ¼ş¸øÎÒ
+æœ‰é—®é¢˜çš„è¯ï¼Œå¯ä»¥å‘é‚®ä»¶ç»™æˆ‘
 
 bluetinestyle@126.com
