@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>天气预报</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    .clearFixed:after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+
+    .weather-ct {
+      margin: 0 auto;
+      width: 300px;
+      text-align: center;
+    }
+
+    .ct-header {
+      height: 38px;
+      font-size: 18px;
+      line-height: 38px;
+      color: #fff;
+      text-align: center;
+      background: #6ec884;
+    }
+
+    .ct-main {
+      color: #55b46c;
+      background: #f8fffa;
+      border: 1px solid #cfe5d4;
+    }
+
+    .ct-main h3 {
+      margin: 6px 0 6px;
+      font-size: 16px;
+    }
+    
+    .ct-main>p {
+      margin-top: 10px;
+    }
+
+    .ct-main p>span {
+      display: none;
+    }
+
+    .ct-main p>span:first-child {
+      display: block;
+    }
+
+    .next-info {
+      margin-top: 20px;
+      border-top: 1px solid #cfe5d4;
+    }
+
+    .next-info>div {
+      float: left;
+      padding-bottom: 10px;
+      width: 33.3333%;
+      border-right: 1px solid #cfe5d4;
+    }
+
+    .next-info>div:last-child {
+      border-right: none;
+    }
+
+    .date-info img,
+    .next-info img {
+      display: none;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="weather-ct">
+    <div class="ct-header">
+      今日天气
+    </div>
+    <div class="ct-main">
+      <p id="date"></p>
+      <p id="city"></p>
+      <p id="pm"></p>
+      <!--<p id="clothes"></p>
+      <p id="car"></p>
+      <p id="health"></p>
+      <p id="sports"></p>
+      <p id="rays"></p>-->
+      <div class="date-info today">
+        <h3></h3>
+        <img class="dayPicture">
+        <img class="nightPicture">
+        <p class="temperature"></p>
+        <p class="weather"></p>
+        <p class="wind"></p>
+      </div>
+      <div class="next-info clearFixed">
+        <div class="date-info next-day">
+          <h3></h3>
+          <img class="dayPicture">
+          <img class="nightPicture">
+          <p class="temperature"></p>
+          <p class="weather"></p>
+          <p class="wind"></p>
+        </div>
+        <div class="date-info next-2day">
+          <h3></h3>
+          <img class="dayPicture">
+          <img class="nightPicture">
+          <p class="temperature"></p>
+          <p class="weather"></p>
+          <p class="wind"></p>
+        </div>
+        <div class="date-info next-3day">
+          <h3></h3>
+          <img class="dayPicture">
+          <img class="nightPicture">
+          <p class="temperature"></p>
+          <p class="weather"></p>
+          <p class="wind"></p>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+  <script>
+    $.ajax({
+      url: "http://api.jirengu.com/weather.php",
+      method: "GET",
+      dataType: "JSON",
+      success: function(data){
+        $(".ct-main>#date").text(data.date);
+        $(".ct-main>#city").text(data.results[0].currentCity);
+        $(".ct-main>#pm").text("PM2.5指数："+data.results[0].pm25);
+        var dateNo = ['today', 'next-day', 'next-2day', 'next-3day']
+        for(var i = 0; i<4; i++){
+          $(".date-info."+dateNo[i]+">h3").text(data.results[0].weather_data[i].date);
+          $(".date-info."+dateNo[i]+">.dayPicture").attr("src", data.results[0].weather_data[i].dayPictureUrl);
+          $(".date-info."+dateNo[i]+">.nightPicture").attr("src", data.results[0].weather_data[i].nightPictureUrl);
+          $(".date-info."+dateNo[i]+">.temperature").text(data.results[0].weather_data[i].temperature);
+          $(".date-info."+dateNo[i]+">.weather").text(data.results[0].weather_data[i].weather);
+          $(".date-info."+dateNo[i]+">.wind").text(data.results[0].weather_data[i].wind);
+        }
+
+        var items = ['clothes','car','health','sports','rays'];
+        for(var i = 0; i<6; i++){
+          $.each(data.results[0].index[i], function(index, value){
+            $("#"+items[i]).append(`<span>${value}</span>`)
+          })
+        }
+
+      }
+  })
+  </script>
+</body>
+
+</html>
