@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>ajax加载</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    ul,
+    ol {
+      list-style: none;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+    }
+
+    a {
+      color: #000;
+      text-decoration: none;
+    }
+
+    body {
+      background: #E9F1F4;
+    }
+
+    .news-item {
+      margin-bottom: 40px;
+    }
+
+    .item-list {
+      padding: 0 8px 0;
+      width: 508px;
+      background: #fff;
+    }
+
+    .item-list a {
+      display: block;
+    }
+
+    .item-list>li {
+      padding: 10px 0 10px;
+      width: 500px;
+      border-bottom: 1px solid #eceef0;
+    }
+    
+    .item-list li h2 {
+      font-size: 16px;
+    }
+
+    .item-list li p {
+      font-size: 14px;
+    }
+
+    .item-list li h2,
+    .item-list li p {
+      padding: 4px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .item-list .item-img {
+      float: left;
+      padding: 1px;
+      width: 75px;
+      height: 55px;
+      text-align: center;
+      background: #e9f1f4;
+      border: 1px solid #e0e0e0;
+    }
+
+    .item-list .item-img>img {
+      display: inline-block;
+      max-height: 100%;
+    }
+
+    .more {
+      width: 508px;
+      height: 35px;
+      color: #b4b4b4;
+      line-height: 33px;
+      text-align: center;
+      border: 1px solid #efefef;
+      background-color: #f6f5f5;
+    }
+
+    .more .btn-more {
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="news-item">
+    <ul class="item-list">
+        <li>
+          <a href="http://xw.qq.com/mil/20170523041530/MIL2017052304153008" target="_blank">
+            <div class="item-img">
+              <img src="http://inews.gtimg.com/newsapp_ls/0/1585814382_150120/0">
+            </div>
+            <h2>王毅再就“萨德”表态：尽快拔掉卡在中韩关系中的这根刺</h2>
+            <p>资料图：萨德系统中新网5月23日电据外交部网站...</p>
+          </a>
+        </li>
+        <li>
+          <a href="http://view.inews.qq.com/a/20170523A05GQI00" target="_blank">
+            <div class="item-img">
+              <img src="http://inews.gtimg.com/newsapp_ls/0/1585424456_150120/0">
+            </div>
+            <h2>美国海军最悲伤的时刻来临，台军却兴奋得两眼放光</h2>
+            <p>对于美国海军而言，一个悲伤的时刻或许很快就将来...</p>
+          </a>
+        </li>
+    </ul>
+    <div class="more">
+      <span class="btn-more">点击查看更多</span>
+    </div>
+  </div>
+
+  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+  <script>
+    var newsIndex = 0;
+    var isLock = false; //设置锁的初始状态
+    $(".btn-more").on("click", function(){
+      $(".more>.btn-more").text("加载中...");
+      if(isLock){ //若锁住就返回
+        return;
+      }
+      isLock = true; //锁住
+      $.ajax({
+        url: "/moreNews",
+        method: "POST",
+        dataType: "JSON",
+        data: {
+          newsIndex: newsIndex
+        }
+      }).done(function(ret){
+        if(ret.status === 0){
+          newsIndex++;
+          appendHtml(ret.data);
+          isLock = false; //解锁
+          $(".more>.btn-more").text("点击查看更多");
+        }else{
+          alert("获取新闻出错");
+        }
+      }).fail(function(){
+        alert("系统异常");
+      })
+    })
+
+    function appendHtml(newsData){
+      if(newsData.length === 0){ //若返回空数组
+        $(".btn-more").remove();
+        $(".more").append("<span>到底部了</span>");
+        return;
+      }
+      $.each(newsData, function(){
+        var htmls = `<li>
+            <a href="${this.link}" target="_blank">
+              <div class="item-img">
+                <img src="${this.img}">
+              </div>
+              <h2>${this.title}</h2>
+              <p>${this.brief}</p>
+            </a>
+          </li>`;
+          $(".item-list").append(htmls);
+      })
+    }
+  </script>
+</body>
+</html>
