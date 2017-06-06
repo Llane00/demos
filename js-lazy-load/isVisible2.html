@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title></title>
+  <style>
+    body {
+      height: 2000px;
+    }
+    .text-ct {
+      margin-top: 200px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <p class="text-ct" status="unload">你能看见我吗</p>
+  </div>
+  <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script>
+    function isVisible($node){
+      var nodeHight = $node.height();
+      var nodeTop = $node.offset().top;
+      var screenHeight = $(window).height();
+      var scrollTop = $(window).scrollTop();
+      if(nodeTop<=screenHeight+scrollTop && nodeTop+nodeHight>=scrollTop){
+        console.log("true");
+        return true;
+      }else{
+        return false;
+      }
+    }
+
+    $(window).scroll(function(){
+      if($(".text-ct").attr("status")==="loaded"){
+        return;
+      }
+      if(isVisible($(".text-ct"))){
+        $(".text-ct").attr("status", "loaded");
+      };
+    })
+  </script>
+</body>
+</html>
