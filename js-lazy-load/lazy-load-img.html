@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>lazy-load-img</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .images {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .images-wrapper {
+      margin: 2px;
+    }
+
+    .images-wrapper>img {
+      width: 350px;
+      height: 200px;
+      vertical-align: top;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="images">
+    <div class="images-wrapper"><img src="" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg"></div>
+    <div class="images-wrapper"><img src="" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg"></div>
+    <div class="images-wrapper"><img src="" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg"></div>
+    <div class="images-wrapper"><img src="" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/4.jpg"></div>
+    <div class="images-wrapper"><img src="" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/5.jpg"></div>
+    <div class="images-wrapper"><img src="" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/6.jpg"></div>
+    <div class="images-wrapper"><img src="" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/7.jpg"></div>
+    <div class="images-wrapper"><img src="" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/8.jpg"></div>
+    <div class="images-wrapper"><img src="" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/9.jpg"></div>
+    <div class="images-wrapper"><img src="" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/10.jpg"></div>
+    <div class="images-wrapper"><img src="" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/11.jpg"></div>
+    <div class="images-wrapper"><img src="" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/12.jpg"></div>
+    <div class="images-wrapper"><img src="" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/13.jpg"></div>
+    <div class="images-wrapper"><img src="" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/14.jpg"></div>
+    <div class="images-wrapper"><img src="" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/15.jpg"></div>
+    <div class="images-wrapper"><img src="" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/16.jpg"></div>
+    <div class="images-wrapper"><img src="" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/17.jpg"></div>
+    <div class="images-wrapper"><img src="" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/18.jpg"></div>
+    <div class="images-wrapper"><img src="" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/19.jpg"></div>
+    <div class="images-wrapper"><img src="" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/20.jpg"></div>
+    <div class="images-wrapper"><img src="" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/21.jpg"></div>
+    <div class="images-wrapper"><img src="" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/22.jpg"></div>
+    <div class="images-wrapper"><img src="" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/23.jpg"></div>
+    <div class="images-wrapper"><img src="" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/24.jpg"></div>
+    <div class="images-wrapper"><img src="" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/25.jpg"></div>
+    <div class="images-wrapper"><img src="" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/26.jpg"></div>
+    <div class="images-wrapper"><img src="" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/27.jpg"></div>
+    <div class="images-wrapper"><img src="" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/28.jpg"></div>
+    <div class="images-wrapper"><img src="" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/29.jpg"></div>
+    <div class="images-wrapper"><img src="" alt="" data-src="http://cdn.jirengu.com/book.jirengu.com/img/30.jpg"></div>
+  </div>
+  <script src="../include/jquery.min.js"></script>
+  <script>
+    function isVisible($node) {
+      var nodeHight = $node.outerHeight();
+      var nodeTop = $node.offset().top;
+      var screenHeight = $(window).height();
+      var scrollTop = $(window).scrollTop();
+      if (nodeTop < screenHeight + scrollTop && nodeTop + nodeHight > scrollTop) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    function showImg($img){
+      var url = $img.attr("data-src");
+      $img.attr("src", url);
+    }
+
+    function check($images) {
+      $images.each(function(index, image){
+        if ($(image).attr("src") !== "") {
+          return;
+        }
+        if (isVisible($(image))) {
+            showImg($(image));
+        }
+      })
+    }
+
+    var images = $(".images-wrapper>img");
+    check(images);
+    $(window).scroll(function () {
+      check(images)
+    });
+
+  </script>
+</body>
+
+</html>
