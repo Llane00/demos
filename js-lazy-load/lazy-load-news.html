@@ -18,6 +18,7 @@
     }
 
     body {
+      height: 2000px;
       display: flex;
       justify-content: center;
       background: #E9F1F4;
@@ -80,6 +81,7 @@
     }
 
     .more {
+      visibility: hidden;
       width: 508px;
       height: 35px;
       color: #b4b4b4;
@@ -87,10 +89,6 @@
       text-align: center;
       border: 1px solid #efefef;
       background-color: #f6f5f5;
-    }
-
-    .more .btn-more {
-      cursor: pointer;
     }
 
   </style>
@@ -118,7 +116,7 @@
         </li>
     </ul>
     <div class="more">
-      <span class="btn-more">点击查看更多</span>
+      <span class="btn-more"></span>
     </div>
   </div>
 
@@ -126,8 +124,9 @@
   <script>
     var newsIndex = 0;
     var isLock = false; //设置锁的初始状态
-    $(".btn-more").on("click", function(){
+    function getNews(){
       $(".more>.btn-more").text("加载中...");
+      $(".more").css("visibility", "visible");
       if(isLock){ //若锁住就返回
         return;
       }
@@ -150,15 +149,17 @@
       }).fail(function(){
         alert("系统异常");
       })
-    })
+    }
 
     function appendHtml(newsData){
       if(newsData.length === 0){ //若返回空数组
         $(".btn-more").remove();
-        $(".more").html("<span>到底部了</span>");
+        $(".more").html("<span class='isBottom'>到底部了</span>");
+        $(".more").css("visibility", "visible");
         return;
-      }else{
-        $(".more>.btn-more").text("点击查看更多");
+      }else{ //若有内容
+        $(".more>.btn-more").text("");
+        $(".more").css("visibility", "hidden");
       }
       $.each(newsData, function(){
         var htmls = `<li>
@@ -173,6 +174,29 @@
           $(".item-list").append(htmls);
       })
     }
+
+    function isVisible($node) {
+      var nodeHight = $node.outerHeight();
+      var nodeTop = $node.offset().top;
+      var screenHeight = $(window).height();
+      var scrollTop = $(window).scrollTop();
+      if (nodeTop < screenHeight + scrollTop && nodeTop + nodeHight > scrollTop) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    $(window).scroll(function(){
+      if($(".more>span").is(".more>span.isBottom")){ //若已经到底就返回
+        return;
+      }
+      if(isVisible($(".more"))){
+        getNews();
+      }
+    });
+    
+
   </script>
 </body>
 </html>
