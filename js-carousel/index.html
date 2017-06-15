@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>js-carousel</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    ul,
+    ol {
+      list-style: none;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .clearfixed:after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+
+    .carousel {
+      position: relative;
+      margin: 0 auto;
+      width: 300px;
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .carousel .img-ct {
+      position: absolute;
+      left: -300px;
+      width: 12000px;
+    }
+
+    .carousel .img-ct>li {
+      float: left;
+    }
+
+    .carousel .img-ct a {
+      display: inline-block;
+    }
+
+    .carousel .img-ct img {
+      width: 300px;
+      height: 200px;
+    }
+
+    .carousel .btn-pre,
+    .carousel .btn-next {
+      position: absolute;
+      top: 50%;
+      display: inline-block;
+      margin-top: -14px;
+      width: 28px;
+      height: 28px;
+      color: #fff;
+      line-height: 28px;
+      text-align: center;
+      border-radius: 14px;
+      background: rgba(158,158,158,0.4);
+    }
+
+    .carousel .btn-pre {
+      left: 10px;
+    }
+
+    .carousel .btn-next {
+      right: 10px;
+    }
+
+    .bullet-ct {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .bullet {
+      display: inline-block;
+    }
+
+    .bullet>li {
+      display: inline-block;
+      width: 20px;
+      height: 6px;
+      border-radius: 3px;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    .bullet>li.active {
+      background: #999;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="carousel">
+    <ul class="img-ct clearfixed">
+      <li><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg" alt=""></a></li>
+      <li><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg" alt=""></a></li>
+      <li><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg" alt=""></a></li>
+      <li><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/4.jpg" alt=""></a></li>
+    </ul>
+    <a class="btn-pre" href="#">&lt;</a>
+    <a class="btn-next" href="#">&gt;</a>
+    <div class="bullet-ct">
+      <ul class="bullet">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+  </div>
+  <script src="../include/jquery.min.js"></script>
+  <script>
+    var $imgCt = $(".img-ct");
+    var imgWidth = $(".img-ct>li>a").width();
+    var imgLength = $(".img-ct>li").length; //此时还没复制替身
+    var $bullets = $(".bullet>li");
+    var currentIndex = 0;
+
+    //复制第一张图和最后一张图的替身
+    var $firstLi = $(".carousel>.img-ct").find("li").first();
+    var $lastLi = $(".carousel>.img-ct").find("li").last();
+    $imgCt.prepend($lastLi.clone());
+    $imgCt.append($firstLi.clone());
+
+    var isLock = false;
+    function playnext(n){
+      if(isLock === true) return;
+      isLock = true;
+      $imgCt.animate({
+        left : "-=" + imgWidth*n
+      }, function(){
+        currentIndex += n;
+        if(currentIndex>=imgLength){
+          $imgCt.css("left", "-"+imgWidth+"px");
+          currentIndex = 0;
+        }
+        isLock = false;
+        activeBullet();
+      })
+    }
+
+    function playpre(n){
+      if(isLock === true) return;
+      isLock = true;
+      $imgCt.animate({
+        left : "+=" + imgWidth*n
+      }, function(){
+        currentIndex -= n;
+        if(currentIndex<0){
+          $imgCt.css("left", "-"+imgWidth*imgLength+"px");
+          currentIndex = imgLength-1;
+        }
+        isLock = false;
+        activeBullet();
+      })
+    }
+
+    function activeBullet(){
+      $bullets.removeClass("active").eq(currentIndex).addClass("active");
+    }
+
+    $(".carousel>.btn-next").on("click", function(){
+      playnext(1);
+    })
+
+    $(".carousel>.btn-pre").on("click", function(){
+      playpre(1);
+    })
+
+    $(".bullet>li").on("click", function(){
+      var bulletIndex = $(this).index();
+      if(bulletIndex>currentIndex){
+        playnext(bulletIndex-currentIndex);
+      }
+      if(bulletIndex<currentIndex){
+        playpre(currentIndex-bulletIndex);
+      }
+    })
+  </script>
+</body>
+</html>
