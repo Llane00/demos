@@ -183,10 +183,9 @@
 
     $(".bullet>li").on("click", function(){
       var bulletIndex = $(this).index();
-      if(bulletIndex>currentIndex){
+      if(bulletIndex>=currentIndex){
         playnext(bulletIndex-currentIndex);
-      }
-      if(bulletIndex<currentIndex){
+      }else{
         playpre(currentIndex-bulletIndex);
       }
     })
