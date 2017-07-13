@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>瀑布流</title>
+  <style>
+    .box {
+      position: relative;
+    }
+    .box>.item {
+      position: absolute;
+      margin: 8px;
+      width: 200px;
+      text-align: center;
+      transition: all 0.4s;
+    }
+    .item-1 {
+      height: 100px;
+      background: red;
+    }
+    .item-2 {
+      height: 150px;
+      background: orange;
+    }
+    .item-3 {
+      height: 180px;
+      background: aquamarine;
+    }
+    .item-4 {
+      height: 300px;
+      background: blue;
+    }
+    .item-5 {
+      height: 80px;
+      background: bisque;
+    }
+    .item-6 {
+      height: 60px;
+      background: blueviolet;
+    }
+    .item-7 {
+      height: 132px;
+      background: forestgreen;
+    }
+    .item-8 {
+      height: 210px;
+      background: yellowgreen;
+    }
+    .item-9 {
+      height: 140px;
+      background: darkcyan;
+    }
+    .item-10 {
+      height: 180px;
+      background: teal;
+    }
+    .item-11 {
+      height: 140px;
+      background: forestgreen;
+    }
+    .item-12 {
+      height: 199px;
+      background: fuchsia;
+    }
+    .item-13 {
+      height: 145px;
+      background: darkgoldenrod;
+    }
+    .item-14 {
+      height: 130px;
+      background: wheat;
+    }
+    .item-15 {
+      height: 240px;
+      background: darkgrey;
+    }
+    .item-16 {
+      height: 230px;
+      background: seashell;
+    }
+    .item-17 {
+      height: 108px;
+      background: salmon;
+    }
+    .item-18 {
+      height: 130px;
+      background: darkgoldenrod;
+    }
+    .item-19 {
+      height: 100px;
+      background: yellowgreen;
+    }
+    .item-20 {
+      height: 190px;
+      background: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="item item-1"> 1 </div>
+    <div class="item item-2"> 2 </div>
+    <div class="item item-3"> 3 </div>
+    <div class="item item-4"> 4 </div>
+    <div class="item item-5"> 5 </div>
+    <div class="item item-6"> 6 </div>
+    <div class="item item-7"> 7 </div>
+    <div class="item item-8"> 8 </div>
+    <div class="item item-9"> 9 </div>
+    <div class="item item-10"> 10 </div>
+    <div class="item item-11"> 11 </div>
+    <div class="item item-12"> 12 </div>
+    <div class="item item-13"> 13 </div>
+    <div class="item item-14"> 14 </div>
+    <div class="item item-15"> 15 </div>
+    <div class="item item-16"> 16 </div>
+    <div class="item item-17"> 17 </div>
+    <div class="item item-18"> 18 </div>
+    <div class="item item-19"> 19 </div>
+    <div class="item item-20"> 20 </div>
+  </div>
+  <script src="../include/jquery.min.js"></script>
+  <script>
+    var waterFull = (function(){
+      function init(){
+        waterfull();
+        $(window).resize(function(){
+          waterfull();
+        })
+      };
+
+      function waterfull(){
+        var colLength =parseInt($(".box").width()/$(".item").width());
+        var itemArr = [];
+        //初始化数组
+        for(var i = 0; i<colLength; i++){
+          itemArr[i] = 0;
+        }
+
+        $(".box>.item").each(function(){
+          var minValue = Math.min.apply(null, itemArr);
+          var minIndex = itemArr.indexOf(minValue);
+
+          $(this).css({
+            top: itemArr[minIndex],
+            left: $(this).outerWidth(true) * minIndex
+          })
+
+          itemArr[minIndex] += $(this).outerHeight(true);
+        })
+      }
+
+      return {
+        init: init
+      }
+    })();
+
+    waterFull.init();
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>瀑布流jsonp懒加载</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    ul,
+    ol {
+      list-style: none;
+    }
+
+    .wrap {
+      margin: 0 auto;
+      width: 900px;
+    }
+
+    .wrap>#load {
+      margin: 10px;
+    }
+
+    .wrap>#pic-ct {
+      position: relative;
+    }
+
+    .wrap>#pic-ct>.item {
+      position: absolute;
+      margin: 10px;
+      width: 280px;
+      border: 1px solid #ddd;
+    }
+
+    #pic-ct>.item.hide {
+      display: hide;
+      margin: 10px;
+      width: 280px;
+      border: none;
+    }
+
+    #pic-ct>.item img {
+      margin: 10px;
+      width: 260px;
+    }
+
+    #pic-ct>.item h4 {
+      margin: 0 12px 0;
+      padding-bottom: 4px;
+      border-bottom: 1px solid #ddd;
+      
+    }
+
+    #pic-ct>.item p {
+      margin: 10px;
+      font-size: 14px;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <ul id="pic-ct">
+      <li class="item hide"></li>
+    </ul>
+    <span id="load">loading...</span>
+  </div>
+
+  <script src="../include/jquery.min.js"></script>
+  <script>
+    var curPage = 1;
+    var perPageCount = 10;
+    var colSumHeight = [];
+    var nodeWidth = $(".item").outerWidth(true);
+    var colNum = parseInt($("#pic-ct").width() / $(".item").outerWidth(true));
+    for (var i = 0; i < colNum; i++) {
+      colSumHeight[i] = 0;
+    }
+
+    var isDataArrive = true;
+
+    start();
+
+    function start(){
+      getData(function (newsList) {
+        isDataArrive = true;
+        $.each(newsList, function (idx, news) {
+          var $node = getNode(news)
+          $node.find("img").load(function () {
+            $("#pic-ct").append($node);
+            waterFullPlace($node)
+          })
+        })
+      })
+      isDataArrive = false;
+    }
+
+    $(window).scroll(function(){
+      if(!isDataArrive) return;
+      if(isVisible($("#load"))){
+        console.log(isVisible($("#load")))
+        start();
+      }
+    })
+
+    function getData(callback) {
+      $.ajax({
+        url: "http://platform.sina.com.cn/slide/album_tech",
+        dataType: "jsonp",
+        jsonp: "jsoncallback",
+        data: {
+          app_key: "1271687855",
+          num: perPageCount,
+          page: curPage
+        }
+      }).done(function (ret) {
+        if (ret && ret.status && ret.status.code == "0") {
+          callback(ret.data);
+          curPage++;
+        } else {
+          console.log("get error data");
+        }
+      });
+    }
+
+    function getNode(item) {
+      var tpl = `
+        <li class="item">
+          <a href="${item.url}" class="link"><img src="${item.img_url}" alt=""></a>
+          <h4 class="header">${item.short_name}</h4>
+          <P class="desp">${item.short_intro}</p>
+        </li>
+      `;
+      return $(tpl);
+    }
+
+    function waterFullPlace($node) {
+        var idx = 0;
+        var minSumHeight = colSumHeight[0];
+
+        for (var i = 0; i < colSumHeight.length; i++) {
+          if (colSumHeight[i] < minSumHeight) {
+            idx = i;
+            minSumHeight = colSumHeight[i];
+          }
+        }
+
+        $node.css({
+          left: nodeWidth * idx,
+          top: minSumHeight,
+          opacity: 1
+        })
+
+        colSumHeight[idx] += $node.outerHeight(true);
+        $("#pic-ct").height(Math.max.apply(null, colSumHeight));
+    }
+
+    function isVisible($element){
+      var scrollTop = $(window).scrollTop(),
+          windowHeight = $(window).height(),
+          top = $element.offset().top;
+
+      if(top<scrollTop+windowHeight){
+        return true;
+      }else{
+        return false;
+      }
+    }
+
+  </script>
+</body>
+
+</html>
