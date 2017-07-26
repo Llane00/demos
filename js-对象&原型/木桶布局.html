@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>木桶布局</title>
+</head>
+<body>
+	<div class="ct"></div>
+	<script src='http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js'></script>
+	<script>
+		function Barrel($ct){
+			this.$ct = $ct;
+			this.rowList = [];
+			this.loadImgs();
+		}
+
+		Barrel.prototype = {
+			loadImgs: function(){
+				var _this = this;
+				var imgs = this.getImgUrls(10);
+
+				for(var i = 0; i<imgs.length; i++){
+					var img = new Image();
+					img.src = imgs[i];
+
+					console.log(imgs[i]);
+					
+					img.onload = function(){
+						var imgInfo = {
+							img: img,
+							width: 200*img.width/img.height,
+							height: 200
+						}
+
+						console.log(imgInfo.width);
+						
+						_this.render(imgInfo);
+					}
+				}
+			},
+			
+			getImgUrls: function(num){
+				var urls = [],
+						imgHeight,
+						imgWidth,
+						color,
+						url;
+				for(var i = 0; i<num; i++){
+					imgHeight = Math.floor(Math.random()*100 + 50);
+					imgWidth = Math.floor(Math.random()*300 + 50);
+					color = Math.random().toString(16).substring(2, 8);
+					url = 'http://placehold.it/'+imgWidth+'x'+imgHeight+'/'+color+'/fff';
+					urls.push(url);
+				}
+				return urls;
+			},
+
+			render: function(imgInfo){
+				var clientWidth = this.$ct.width();
+				var rowWidth = 0;
+				var newRowHeight = 0;
+				var lastImgInfo = imgInfo;
+
+				this.rowList.push(imgInfo);
+				for(var i = 0; i<this.rowList.length; i++){
+					rowWidth += this.rowList[i].width;
+				}
+				if(rowWidth>clientWidth){
+					this.rowList.pop();
+					rowWidth = rowWidth - lastImgInfo.width;
+					rowHeight = clientWidth*newRowHeight/rowWidth;
+					this.layout(newRowHeight);
+					this.rowList = [];
+					this.rowList.push(lastImgInfo);
+				} 
+			},
+
+			layout: function(newRowHeight){
+				var $rowCt = $('<div class="img-row"></div>');
+				$.each(this.rowList, function(index, imgInfo){
+					var $imgCt = $('<div class="img-box">'),
+							$img = imgInfo.img;
+					$img.height = newRowHeight;
+					$imgCt.append($img);
+					$rowCt.append($imgCt);
+				});
+				this.$ct.append($rowCt);
+			}
+		};
+
+		var b1 = new Barrel($('.ct'));
+
+	</script>
+</body>
+</html>
