@@ -3,6 +3,28 @@
 <head>
 	<meta charset="UTF-8">
 	<title>木桶布局</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		
+		.ct {
+			margin: 0 auto;
+			width: 1000px;
+		}
+
+		.img-box {
+			float: left;
+		}
+
+		.img-row:after{
+			content: '';
+			display: block;
+			clear: both;
+		}
+	</style>
 </head>
 <body>
 	<div class="ct"></div>
@@ -17,26 +39,21 @@
 		Barrel.prototype = {
 			loadImgs: function(){
 				var _this = this;
-				var imgs = this.getImgUrls(10);
-
-				for(var i = 0; i<imgs.length; i++){
+				var imgs = this.getImgUrls(50);
+				$.each(imgs, function(index, value){
 					var img = new Image();
-					img.src = imgs[i];
-
-					console.log(imgs[i]);
-					
+					img.src = imgs[index];
+					//查看图片地址
+					console.log(img.src);
 					img.onload = function(){
 						var imgInfo = {
 							img: img,
-							width: 200*img.width/img.height,
-							height: 200
+							width: 100*img.width/img.height,
+							height: 100
 						}
-
-						console.log(imgInfo.width);
-						
 						_this.render(imgInfo);
 					}
-				}
+				})
 			},
 			
 			getImgUrls: function(num){
@@ -46,8 +63,8 @@
 						color,
 						url;
 				for(var i = 0; i<num; i++){
-					imgHeight = Math.floor(Math.random()*100 + 50);
-					imgWidth = Math.floor(Math.random()*300 + 50);
+					imgWidth = Math.floor(Math.random()*100 + 50);
+					imgHeight = Math.floor(Math.random()*30 + 50);
 					color = Math.random().toString(16).substring(2, 8);
 					url = 'http://placehold.it/'+imgWidth+'x'+imgHeight+'/'+color+'/fff';
 					urls.push(url);
@@ -62,17 +79,19 @@
 				var lastImgInfo = imgInfo;
 
 				this.rowList.push(imgInfo);
+
 				for(var i = 0; i<this.rowList.length; i++){
 					rowWidth += this.rowList[i].width;
+					if(rowWidth>clientWidth){
+						this.rowList.pop();
+						rowWidth = rowWidth - lastImgInfo.width;
+						newRowHeight = clientWidth*100/rowWidth;
+						this.layout(newRowHeight);
+						this.rowList = [];
+						this.rowList.push(lastImgInfo);
+					}
 				}
-				if(rowWidth>clientWidth){
-					this.rowList.pop();
-					rowWidth = rowWidth - lastImgInfo.width;
-					rowHeight = clientWidth*newRowHeight/rowWidth;
-					this.layout(newRowHeight);
-					this.rowList = [];
-					this.rowList.push(lastImgInfo);
-				} 
+
 			},
 
 			layout: function(newRowHeight){
