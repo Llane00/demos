@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		
+    if(!String.hasOwnProperty('getMostOften')){
+      String.prototype.getMostOften = function(){
+        var array = this.split('');
+        var mostOften = {};
+        var mostNum = 0;
+        var mostItem = '';
+        for(var i = 0; i<array.length; i++){
+          if(mostOften.hasOwnProperty(array[i])){
+            mostOften[array[i]] += 1;
+            if(mostOften[array[i]]>mostNum){
+              mostNum = mostOften[array[i]];
+              mostItem = array[i];
+            }
+          }else{
+            mostOften[array[i]] = 0;
+          }
+        }
+        return mostItem;
+      }
+    }
+
+    var str = 'ahbbccdeddddfg';
+		var ch = str.getMostOften();
+		console.log(ch); //d , 因为d 出现了5次
+
+</script>
+</body>
+</html>
