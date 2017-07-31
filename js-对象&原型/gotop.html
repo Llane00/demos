@@ -4,58 +4,51 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<style type="text/css">
-		.text-ct {
-			height: 2000px;
-		}
+	  .text-ct {
+	    margin-top: 40px;
+		height: 2000px;
+        font-size: 20px;
+        text-align: center;
+	  }
 		#btn-gotop {
-        	margin-bottom: 40px;
-        	text-align: center;
-        	color: red;
-      	}
+			margin: 0 auto 40px;
+			width: 100px;
+			height: 30px;
+			font-size: 20px;
+			text-align: center;
+			line-height: 30px;
+			color: pink;
+			border: 1px solid;
+			border-radius: 4px;
+		}
 	</style>
 </head>
 <body>
-	<div class="text-ct"></div>
-	<script>
-		function GoTop(ct){
-			this.ct = ct;
-			this.createNode();
-			this.bindEvent();
-		}
+  <div class="text-ct">请往下拉</div>
+  <script>
+    function GoTop(ct){
+      this.ct = ct;
+      this.createNode();
+      this.bindEvent();
+    }
 
-		GoTop.prototype = {
-			createNode: function(){
-				this.target = document.createElement('div');
-				this.target.setAttribute('id', 'btn-gotop');
-				this.target.innerText = '返回';
-				this.ct.appendChild(this.target);
-			},
-			bindEvent: function(){
-				this.ct.addEventListener('click', function(){
-					document.body.scrollTop = 0;	
-				})
-			}
-		}
-
-		var body = document.querySelector('body');
-		var gotop = new GoTop(body);
-	</script>
+    GoTop.prototype = {
+      createNode: function(){
+        this.target = document.createElement('div');
+        this.target.setAttribute('id', 'btn-gotop');
+        this.target.innerText = '返回';
+        this.ct.appendChild(this.target);
+      },
+      bindEvent: function(){
+        this.ct.addEventListener('click', function(){
+          document.body.scrollTop = 0;	
+        })
+      }
+    }
+    var body = document.querySelector('body');
+    var gotop = new GoTop(body);
+  </script>
 </body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </html>
 
 
