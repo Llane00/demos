@@ -144,13 +144,13 @@
 
   <script src="../include/jquery.min.js"></script>
   <script>
-    function Carousel($ct){
+    function _Carousel($ct){
       this.$ct = $ct;
       this.init();
       this.bind();
     }
 
-    Carousel.prototype.init = function(){
+    _Carousel.prototype.init = function(){
       this.$imgCt = this.$ct.find(".img-ct");
       this.imgWidth = this.$ct.find(".img-ct>li>a").width();
       this.imgLength = this.$ct.find(".img-ct>li").length;
@@ -169,7 +169,7 @@
 
     }
 
-    Carousel.prototype.bind = function(){
+    _Carousel.prototype.bind = function(){
       var _this = this;
       _this.nextBtn.on("click", function(){
         _this.playnext(1);
@@ -189,7 +189,7 @@
       })
     }
 
-    Carousel.prototype.playnext = function(n){
+    _Carousel.prototype.playnext = function(n){
       var _this = this;
       if(this.isLock === true) return;
       this.isLock = true;
@@ -207,7 +207,7 @@
     }
 
 
-    Carousel.prototype.playpre = function(n){
+    _Carousel.prototype.playpre = function(n){
       var _this = this;
       if(this.isLock === true) return;
       this.isLock = true;
@@ -224,12 +224,29 @@
       })
     }
 
-    Carousel.prototype.activeBullet = function(){
+    _Carousel.prototype.activeBullet = function(){
       this.$bullets.removeClass("active").eq(this.currentIndex).addClass("active");
     }
 
-    new Carousel($('.carousel').eq(0));
-    new Carousel($('.carousel').eq(1));
+    var Carousel = (function($ct){
+      return {
+        init: function(){
+          $ct.each(function(index, node){
+            new _Carousel.init($(node));
+          })
+        }
+      }
+
+    })()
+
+    Carousel.init($('.carousel'));
+
+
+
+
+
+    // new Carousel($('.carousel').eq(0));
+    // new Carousel($('.carousel').eq(1));
 
   </script>
 </body>
