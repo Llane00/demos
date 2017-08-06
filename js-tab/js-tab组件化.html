@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    ul,
+    ol {
+      list-style: none;
+    }
+
+    .clearFixed:after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+
+    .tab {
+      margin: 0 auto;
+      width: 600px;
+      border: 1px solid #CBCBCB;
+    }
+
+    .tab-header {
+      border: 1px solid #CBCBCB;
+    }
+
+    .tab-header>li {
+      float: left;
+      padding: 4px;
+      width: 33.3333%;
+      text-align: center;
+      border: 1px solid #CBCBCB;
+      cursor: pointer;
+    }
+
+    .tab-header>li:last-child {
+      border-right: none;
+    }
+
+    .tab-header>li.active {
+      background: #EDEDED;
+    }
+
+    .tab-container {
+      padding: 20px;
+    }
+
+    .tab-container>li {
+      display: none;
+      height: 150px;
+    }
+
+    .tab-container>li.active {
+      display: block;
+    }
+
+  </style>
+</head>
+<body>
+  <!-- 第一个tab组件 -->
+  <div class="tab">
+    <ul class="tab-header clearfixed">
+      <li class="active">tab1</li>
+      <li>tab2</li>
+      <li>tab3</li>
+    </ul>
+    <ul class="tab-container">
+      <li class="active">内容1</li>
+      <li>内容2</li>
+      <li>内容3</li>
+    </ul>
+  </div>
+
+  <!-- 第二个tab组件 -->
+  <div class="tab">
+    <ul class="tab-header clearfixed">
+      <li class="active">tab1</li>
+      <li>tab2</li>
+      <li>tab3</li>
+    </ul>
+    <ul class="tab-container">
+      <li class="active">内容1</li>
+      <li>内容2</li>
+      <li>内容3</li>
+    </ul>
+  </div>
+  <script>
+    function Tab(ct){
+      var _this = this;
+      this.tabHeader = document.querySelector(".tab-header");
+      this.tabTitles = document.querySelectorAll(".tab-header>li");
+      this.tabPanels = document.querySelectorAll(".tab-container>li");
+      this.tabHeader.addEventListener("click", function(e){ //tab-header代理监听
+        var clickNode = e.target;
+        if(clickNode.tagName.toLowerCase() === "li"){
+          for(var i = 0; i < _this.tabTitles.length; i++){
+            _this.tabHeader.children[i].classList.remove("active");
+          }
+          clickNode.classList.add("active")
+          var index = [].indexOf.call(_this.tabTitles, _this.clickNode)
+          for(var i = 0; i < _this.tabPanels.length; i++){
+            _this.tabPanels[i].classList.remove("active")
+          }
+          _this.tabPanels[index].classList.add("active")
+        }
+      })
+
+    }
+    var tab1 = new Tab(document.querySelectorAll('.tab')[0]);
+  </script>
+</body>
+</html>
