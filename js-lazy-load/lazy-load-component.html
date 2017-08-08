@@ -80,6 +80,13 @@
         this.check();
       }
 
+      function _ExposureOnce($target, callback){
+        this.$target = $target;
+        this.callback = callback;
+        this.bindImg();
+        this.checkImg();
+      }
+
       _Exposure.prototype.bind = function(){
         var _this = this;
         $(window).on('scroll', function(){
@@ -87,7 +94,7 @@
         })
       }
 
-       _Exposure.prototype.bindImg = function(){
+       _ExposureOnce.prototype.bindImg = function(){
         var _this = this;
         $(window).on('scroll', function(){
           _this.checkImg();
@@ -95,8 +102,13 @@
       }
 
       _Exposure.prototype.check = function(){
-        console.log(this.$target.attr("src"));
-        if(this.$target.attr("src") !== ""){
+        if(this.isShow(this.$target)){
+          this.callback(this.$target);
+        }
+      }
+
+      _ExposureOnce.prototype.checkImg = function(){
+        if(this.$target.attr("src") === this.$target.attr("data-src")){
           return;
         }
         if(this.isShow(this.$target)){
@@ -104,17 +116,7 @@
         }
       }
 
-      _Exposure.prototype.checkImg = function(){
-        console.log(this.$target.attr("src"));
-        if(this.$target.attr("src") !== ""){
-          return;
-        }
-        if(this.isShow(this.$target)){
-          this.callback(this.$target);
-        }
-      }
-
-      _Exposure.prototype.isShow = function(){
+      _Exposure.prototype.isShow = _ExposureOnce.prototype.isShow = function(){
         var windowHeight = $(window).height(),
             scrollTop = $(window).scrollTop(),
             offsetTop = this.$target.offset().top,
@@ -133,14 +135,14 @@
           })
         },
         once: function($targets, callback){
-          // $targets.each(function(index, target){
-          //   new _ExposureOnce($(target), callback);
-          // })
+          $targets.each(function(index, target){
+            new _ExposureOnce($(target), callback)
+          })
         }
       }
     })();
 
-    //文本的曝光
+    //文本曝光
     Lazy.init($('#hello'), function($node){
       $node.text($node.text() + '123');
     });
@@ -149,7 +151,7 @@
       $node.text($node.text() + '456');
     });
 
-    //图片的曝光
+    //图片曝光
     Lazy.once($('.container img'), function($node){
       var url = $node.attr('data-src');
       $node.attr("src", url);

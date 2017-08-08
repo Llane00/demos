@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>modal</title>
+  <style>
+
+    .clearFixed:after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+    
+    #btn-modal {
+      border: 1px solid #999;
+      border-radius: 4px;
+      background: #fff;
+    }
+    
+    .modal {
+      display: none;
+    }
+    
+    .cover {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 998;
+    }
+    
+    .modal-ct {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%);
+      width: 400px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      background: #fff;
+      z-index: 999;
+    }
+    
+    .modal-ct .modal-header {
+      position: relative;
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .modal-ct>.modal-header>h3 {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .modal-ct>.modal-header>.close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+    }
+    
+    .modal-ct .modal-footer>span {
+      float: right;
+      cursor: pointer;
+    }
+    
+    .modal-footer .btn-cancel {
+      padding-right: 10px;
+    }
+    
+    .modal-ct .modal-main,
+    .modal-ct .modal-footer {
+      padding: 10px;
+    }
+    
+    .modal-ct .modal-footer {
+      border-top: 1px solid #eee;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="modal-box">
+    <button id="btn-modal">点我1</button>
+    <div class="modal">
+      <div class="cover"></div>
+      <div class="modal-ct">
+        <div class="modal-header">
+          <h3>我是标题1</h3><span class="close">×</span>
+        </div>
+        <div class="modal-main">
+          <p>我是内容1</p>
+          <p>我是内容1</p>
+        </div>
+        <div class="modal-footer clearFixed">
+          <span class="btn-confirm">确定</span>
+          <span class="btn-cancel">取消</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    Modal = (function(){
+
+      function _Modal(ct){
+        this.ct = ct;
+        this.init();
+        this.bind();
+      }
+      
+      _Modal.prototype.init = function(){
+        this.btnModal = this.ct.querySelector("#btn-modal");
+        this.modal = this.ct.querySelector(".modal");
+      }
+
+      _Modal.prototype.bind = function(){
+        //弹出按钮的监听
+        var _this = this;
+        this.btnModal.addEventListener("click", function (e){
+          e.stopPropagation();
+          _this.showModal();
+        })
+
+        //modal组件代理监听
+        this.modal.addEventListener("click", function(e){
+          e.stopPropagation();
+          var clickNode = e.target;
+          hasClass = _this.hasClass;
+          if(hasClass(clickNode, "close") || hasClass(clickNode, "btn-cancel") || hasClass(clickNode, "cover")){
+            _this.hideModal();
+          }
+        })
+      }
+
+      _Modal.prototype.showModal = function(){
+        this.modal.style.display = "block"
+      }
+
+      _Modal.prototype.hideModal = function(){
+        this.modal.style.display = "none"
+      }
+
+      //查看目标元素是否有指定class
+      _Modal.prototype.hasClass = function(element, cls){
+        var reg = new RegExp("\\b"+cls+"\\b");
+        return element.className.match(reg)
+      }
+
+      return {
+        init: function(cts){
+          cts.forEach(function(ct) {
+           new _Modal(ct); 
+          });
+        }
+      }
+    })();
+
+    Modal.init(document.querySelectorAll('.modal-box'));
+
+  </script>
+</body>
+
+</html>
