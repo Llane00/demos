@@ -19,15 +19,24 @@
       init: function($target){
         this.$target = $target;
         if(this.isValiDate($target.attr('data-init'))){
-          this.date = new Date($target.attr('data-init'));
-          this.watchDate = new Date($target.attr('data-init'));
+          this.date = new Date($target.attr('data-init'));//当前日期或指定日期
+          this.watchDate = new Date($target.attr('data-init'));//用户切换时的日期
         } else {
           this.date = new Date();
           this.watchDate = new Date();
         }
       },
+
       isValiDate: function(dataStr){
         return new Date(dataStr).toString() !== 'Invalid Date';
+      },
+
+      render: function(){
+        var tpl = `<div class="ui-date-picker" style="display:none">
+                    <div class="header">
+                      <span class="pre btn-left"></span>  
+                    </div>
+                  </div>`
       }
     }
   </script>
