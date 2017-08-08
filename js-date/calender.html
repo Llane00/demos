@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>calender</title>
+</head>
+<body>
+  <input class="date-input" type="text" placeholder="有初始值" date-init="2016/05/31" />
+  <input class="date-input" type="text" placeholder="无初始值" />
+  <script src="../include/jquery.min.js"></script>
+  <script>
+    function Calender($target){
+      this.init($target);
+      this.render();
+    }
+    Calender.prototype = {
+      init: function($target){
+        this.$target = $target;
+        if(this.isValiDate($target.attr('data-init'))){
+          this.date = new Date($target.attr('data-init'));
+          this.watchDate = new Date($target.attr('data-init'));
+        } else {
+          this.date = new Date();
+          this.watchDate = new Date();
+        }
+      },
+      isValiDate: function(dataStr){
+        return new Date(dataStr).toString() !== 'Invalid Date';
+      }
+    }
+  </script>
+</body>
+</html>
