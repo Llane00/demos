@@ -5,6 +5,92 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>calender</title>
+  <style>
+    .ui-date-picker {
+      position: absolute;
+      width: 240px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      font-family: serif, cursive, fantasy
+    }
+
+    .ui-date-picker > .header {
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      background-color: #4385F5;
+      color: #fff;
+    }
+
+    .ui-date-picker .caret-left {
+      display: block;
+      float: left;
+      margin-left: 10px;
+      margin-top: 6px;
+      border-right: 7px solid #fff;
+      border-top: 7px solid transparent;
+      border-bottom: 7px solid transparent;
+      width: 0;
+      height: 0;
+      cursor: pointer;
+    }
+
+    .ui-date-picker .caret-right {
+      display: block;
+      float: right;
+      margin-right: 10px;
+      margin-top: 6px;
+      border-left: 7px solid #fff;
+      border-top: 7px solid transparent;
+      border-bottom: 7px solid transparent;
+      width: 0;
+      height: 0;
+      cursor: pointer;
+    }
+
+    .ui-date-picker .panel {
+      width: 100%;
+      text-align: center;
+      background-color: #fff;
+      border-collapse: collapse;
+    }
+
+    .ui-date-picker .panel th {
+      line-height: 2;
+    }
+
+    .ui-date-picker .panel tr {
+      border-top: 1px solid #eee;
+    }
+
+    .ui-date-picker .panel tr:last-child {
+      padding-bottom: 10px;
+    }
+
+    .ui-date-picker .panel td {
+      line-height: 1.4
+    }
+
+    .ui-date-picker .pre-month,
+    .ui-date-picker .next-month {
+      color: #eee;
+    }
+
+    .ui-date-picker .cur-month {
+      cursor: pointer;
+    }
+
+    .ui-date-picker .cur-month:hover {
+      background-color: #ccc;
+      color: #fff;
+    }
+
+    .ui-date-picker .cur-date {
+      font-weight: bold;
+      color: #4385F5;
+    } 
+
+  </style>
 </head>
 <body>
   <input class="date-input" type="text" placeholder="有初始值" date-init="2016/05/31" />
@@ -74,46 +160,46 @@
       setData: function(){
         this.$datepicker.find('tbody').html('');
         
-        var firstDay = this.getFirstDay(this.watchDay),
+        var firstDay = this.getFirstDay(this.watchDate),
             lastDay = this.getLastDay(this.watchDate);
         
         var dateArr = [];
         for(var i = firstDay.getDay(); i>0; i--){
-          var d = new Date(firstDay.getTime - i*24*60*60*1000);
+          var d = new Date(firstDay.getTime() - i*24*60*60*1000);
           dateArr.push({type:"pre", date:d});
         }
 
-        for(var j = 0; j<lastDay.getDay()-firstDay.getDate()+1; j++){
-          var d = new Date(firstDay.getTime() + j*24*60*60*1000);
-          dataArr.push({type:"cur", date:d});
+        for(var j = 0; j< lastDay.getDate() - firstDay.getDate() + 1; j++){
+          var d = new Date( firstDay.getTime() + j*24*60*60*1000 );
+          dateArr.push({type:'cur', date: d});
         }
 
-        for(var k = 1; k<7-lastDay.getDay(); K++){
+        for(var k = 1; k<7-lastDay.getDay(); k++){
           var d = new Date(lastDay.getTime() + k*24*60*60*1000);
           dateArr.push({type:'next', date: d});
         }
 
-        this.$datepicker.find('.header-date')
-        .text(this.watchDate.getFullYear()+'年'+(this.watchDate.getMonth()+1)+'月');
+        this.$datepicker.find('.header-date').text(this.watchDate.getFullYear()+'年'+(this.watchDate.getMonth()+1)+'月');
         
         var tpl = '';
-        for(var i = 0; i<dataArr.length; i++){
+        for(var i = 0; i<dateArr.length; i++){
           if(i%7===0){
             tpl = '<tr>' +tpl;
           }
           tpl += '<td class="';
-          if(dataArr[i].type === 'pre'){
+          if(dateArr[i].type === 'pre'){
             tpl += 'pre-month';
-          } else if(dataArr[i].type === 'cur'){
+          } else if(dateArr[i].type === 'cur'){
             tpl += 'cur-month';
           } else {
             tpl += 'next-month';
           }
           if(this.getYYMMDD(this.date) === this.getYYMMDD(dateArr[i].date)){
-            tpl += 'cur-date'
+            tpl += ' cur-date'
           }
           tpl += '"';
-          tpl += ' data-date="' + this.getYYMMDD(dateArr[i].date) + '">';
+          tpl += ' data-date="'+ this.getYYMMDD(dateArr[i].date) + '">';
+          tpl += this.toFixed( dateArr[i].date.getDate()) + '</td>';
 
           if(i%7===6){
             tpl = tpl + '</tr>'
@@ -121,6 +207,33 @@
         }
         this.$datepicker.find('tbody').html(tpl);
       },
+
+      bind: function(){
+        var _this = this;
+        this.$datepicker.find('.pre').on('click', function(){
+          _this.watchDate = _this.getPreMonth(_this.watchDate);
+          _this.setData();
+        });
+        this.$datepicker.find('.next').on('click', function(){
+          _this.watchDate = _this.getNextMonth(_this.watchDate);
+          _this.setData();
+        });
+        this.$datepicker.on('click', '.cur-month', function(){
+          _this.$target.val($(this).attr('data-date'))
+          _this.$datepicker.hide();
+        });
+        this.$target.on('click', function(e){
+          e.stopPropagation();
+          _this.$datepicker.show();
+        });
+        this.$datepicker.on('click', function(e){
+          e.stopPropagation();
+        });
+        $(window).on('click', function(){
+          _this.$datepicker.hide();
+        })
+      },
+
       //获取date所在年月第一天的时间对象
       getFirstDay: function(date){
         var year = date.getFullYear(),
@@ -162,13 +275,13 @@
       getYYMMDD: function(date){
         var yy = date.getFullYear(),
             mm = date.getMonth()+1,
-            dd = date.getDay();
+            dd = date.getDate();
         return yy + "/" + this.toFixed(mm) + "/" + this.toFixed(dd);
       },
 
       toFixed: function(n){
         //如果是一位数
-        return (n+'').length === 1? ('0'+n) : (n+'');
+        return (n+'').length === 1? ('0'+n+'') : (n+'');
       }
     }
 
@@ -178,7 +291,7 @@
       });
     };
 
-    $(".ll").DatePicker();
+    $(".date-input").DatePicker();
   </script>
 </body>
 </html>
