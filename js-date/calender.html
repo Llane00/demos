@@ -93,203 +93,210 @@
   </style>
 </head>
 <body>
-  <input class="date-input" type="text" placeholder="有初始值" date-init="2016/05/31" />
+  <input class="date-input" type="text" placeholder="有初始值" data-init="2016/05/31" />
   <input class="date-input" type="text" placeholder="无初始值" />
   <script src="../include/jquery.min.js"></script>
   <script>
-    function DatePicker($target){
-      //初始化显示日期
-      this.init($target);
+    var datePicker = (function(){
 
-      //渲染日历模板
-      this.render();
+        function DatePicker($target){
+          //初始化显示日期
+          this.init($target);
 
-      //设置模板的数据
-      this.setData();
+          //渲染日历模板
+          this.render();
 
-      //绑定事件
-      this.bind();
-    }
-    DatePicker.prototype = {
-      init: function($target){
-        this.$target = $target;
-        if(this.isValidDate($target.attr('data-init'))){
-          this.date = new Date($target.attr('data-init'));//当前日期或指定日期
-          this.watchDate = new Date($target.attr('data-init'));//用户切换时的日期
-        } else {
-          this.date = new Date();
-          this.watchDate = new Date();
+          //设置模板的数据
+          this.setData();
+
+          //绑定事件
+          this.bind();
         }
-      },
+        DatePicker.prototype = {
+          init: function($target){
+            this.$target = $target;
+            if(this.isValidDate($target.attr('data-init'))){
+              this.date = new Date($target.attr('data-init'));//当前日期或指定日期
+              this.watchDate = new Date($target.attr('data-init'));//用户切换时的日期
+            } else {
+              this.date = new Date();
+              this.watchDate = new Date();
+            }
+          },
 
-      isValidDate: function(dataStr){
-        return new Date(dataStr).toString() !== 'Invalid Date';
-      },
+          isValidDate: function(dataStr){
+            return new Date(dataStr).toString() !== 'Invalid Date';
+          },
 
-      render: function(){
-        var tpl = `<div class="ui-date-picker" style="display:none">
-                    <div class="header">
-                      <span class="pre caret-left"></span>  
-                      <span class="cur header-date"></span>
-                      <span class="next caret-right"></span>
-                    </div>
-                    <table class="panel">
-                      <thead>
-                        <tr>
-                          <th>日</th>
-                          <th>一</th>
-                          <th>二</th>
-                          <th>三</th>
-                          <th>四</th>
-                          <th>五</th>
-                          <th>六</th>
-                        </tr>
-                      </thead>
-                      <tbody></tbody>
-                    </table>
-                  </div>`;
-        this.$datepicker = $(tpl);
-        this.$datepicker.insertAfter(this.$target)
-                        .css({
-                          'position': 'absolute',
-                          'left': this.$target.offset().left,
-                          'top': this.$target.offset().top + this.$target.height(true)
-                        });
-      },
+          render: function(){
+            var tpl = `<div class="ui-date-picker" style="display:none">
+                        <div class="header">
+                          <span class="pre caret-left"></span>  
+                          <span class="cur header-date"></span>
+                          <span class="next caret-right"></span>
+                        </div>
+                        <table class="panel">
+                          <thead>
+                            <tr>
+                              <th>日</th>
+                              <th>一</th>
+                              <th>二</th>
+                              <th>三</th>
+                              <th>四</th>
+                              <th>五</th>
+                              <th>六</th>
+                            </tr>
+                          </thead>
+                          <tbody></tbody>
+                        </table>
+                      </div>`;
+            this.$datepicker = $(tpl);
+            this.$datepicker.insertAfter(this.$target)
+                            .css({
+                              'position': 'absolute',
+                              'left': this.$target.offset().left,
+                              'top': this.$target.offset().top + this.$target.height(true)
+                            });
+          },
 
-      setData: function(){
-        this.$datepicker.find('tbody').html('');
-        
-        var firstDay = this.getFirstDay(this.watchDate),
-            lastDay = this.getLastDay(this.watchDate);
-        
-        var dateArr = [];
-        for(var i = firstDay.getDay(); i>0; i--){
-          var d = new Date(firstDay.getTime() - i*24*60*60*1000);
-          dateArr.push({type:"pre", date:d});
-        }
+          setData: function(){
+            this.$datepicker.find('tbody').html('');
+            
+            var firstDay = this.getFirstDay(this.watchDate),
+                lastDay = this.getLastDay(this.watchDate);
 
-        for(var j = 0; j< lastDay.getDate() - firstDay.getDate() + 1; j++){
-          var d = new Date( firstDay.getTime() + j*24*60*60*1000 );
-          dateArr.push({type:'cur', date: d});
-        }
+            //getDay获取星期几
+            var dateArr = [];
+            for(var i = firstDay.getDay(); i>0; i--){
+              var d = new Date(firstDay.getTime() - i*24*60*60*1000);
+              dateArr.push({type:"pre", date:d});
+            }
 
-        for(var k = 1; k<7-lastDay.getDay(); k++){
-          var d = new Date(lastDay.getTime() + k*24*60*60*1000);
-          dateArr.push({type:'next', date: d});
-        }
+            for(var j = 0; j< lastDay.getDate() - firstDay.getDate() + 1; j++){
+              var d = new Date( firstDay.getTime() + j*24*60*60*1000 );
+              dateArr.push({type:'cur', date: d});
+            }
 
-        this.$datepicker.find('.header-date').text(this.watchDate.getFullYear()+'年'+(this.watchDate.getMonth()+1)+'月');
-        
-        var tpl = '';
-        for(var i = 0; i<dateArr.length; i++){
-          if(i%7===0){
-            tpl = '<tr>' +tpl;
+            for(var k = 1; k<7-lastDay.getDay(); k++){
+              var d = new Date(lastDay.getTime() + k*24*60*60*1000);
+              dateArr.push({type:'next', date: d});
+            }
+
+            this.$datepicker.find('.header-date').text(this.watchDate.getFullYear()+'年'+(this.watchDate.getMonth()+1)+'月');
+            
+            var tpl = '';
+            for(var i = 0; i<dateArr.length; i++){
+              if(i%7===0){
+                tpl = '<tr>' +tpl;
+              }
+              tpl += '<td class="';
+              if(dateArr[i].type === 'pre'){
+                tpl += 'pre-month';
+              } else if(dateArr[i].type === 'cur'){
+                tpl += 'cur-month';
+              } else {
+                tpl += 'next-month';
+              }
+              if(this.getYYMMDD(this.date) === this.getYYMMDD(dateArr[i].date)){
+                tpl += ' cur-date'
+              }
+              tpl += '"';
+              tpl += ' data-date="'+ this.getYYMMDD(dateArr[i].date) + '">';
+              tpl += this.toFixed( dateArr[i].date.getDate()) + '</td>';
+
+              if(i%7===6){
+                tpl = tpl + '</tr>'
+              }
+            }
+            this.$datepicker.find('tbody').html(tpl);
+          },
+
+          bind: function(){
+            var _this = this;
+            this.$datepicker.find('.pre').on('click', function(){
+              _this.watchDate = _this.getPreFirstDay(_this.watchDate);
+              _this.setData();
+            });
+            this.$datepicker.find('.next').on('click', function(){
+              _this.watchDate = _this.getNextFirstDay(_this.watchDate);
+              _this.setData();
+            });
+            this.$datepicker.on('click', '.cur-month', function(){
+              _this.$target.val($(this).attr('data-date'))
+              _this.$datepicker.hide();
+            });
+            this.$target.on('click', function(e){
+              e.stopPropagation();
+              _this.$datepicker.show();
+            });
+            this.$datepicker.on('click', function(e){
+              e.stopPropagation();
+            });
+            $(window).on('click', function(){
+              _this.$datepicker.hide();
+            })
+          },
+
+          //获取date所在年月第一天的时间对象
+          getFirstDay: function(date){
+            var year = date.getFullYear(),
+                month = date.getMonth();
+            return newDate = new Date(year, month, 1);
+          },
+
+          //获取date所在月份最后一天的时间对象
+          //先获取当前月下一个月的第一天再减去一天的时间
+          getLastDay: function(date){
+            var nextMonthFirstDay = this.getNextFirstDay(date);
+            return new Date(nextMonthFirstDay.getTime() - 60*60*24*1000)
+          },
+
+          //获取date上个月第一天的时间对象
+          getPreFirstDay: function(date){
+            var year = date.getFullYear(),
+                month = date.getMonth();
+            month--;
+            if(month<0){
+              month = 11;
+              year--;
+            }
+            return new Date(year, month, 1);
+          },
+
+          //获取date下个月第一天的时间对象
+          getNextFirstDay: function(date){
+            var year = date.getFullYear(),
+                month = date.getMonth();
+            month++;
+            if(month>11){
+              month = 0;
+              year++;
+            }
+            return new Date(year, month, 1);
+          },
+
+          getYYMMDD: function(date){
+            var yy = date.getFullYear(),
+                mm = date.getMonth()+1,
+                dd = date.getDate();
+            return yy + "/" + this.toFixed(mm) + "/" + this.toFixed(dd);
+          },
+
+          toFixed: function(n){
+            //如果是一位数
+            return (n+'').length === 1? ('0'+n+'') : (n+'');
           }
-          tpl += '<td class="';
-          if(dateArr[i].type === 'pre'){
-            tpl += 'pre-month';
-          } else if(dateArr[i].type === 'cur'){
-            tpl += 'cur-month';
-          } else {
-            tpl += 'next-month';
-          }
-          if(this.getYYMMDD(this.date) === this.getYYMMDD(dateArr[i].date)){
-            tpl += ' cur-date'
-          }
-          tpl += '"';
-          tpl += ' data-date="'+ this.getYYMMDD(dateArr[i].date) + '">';
-          tpl += this.toFixed( dateArr[i].date.getDate()) + '</td>';
-
-          if(i%7===6){
-            tpl = tpl + '</tr>'
-          }
         }
-        this.$datepicker.find('tbody').html(tpl);
-      },
 
-      bind: function(){
-        var _this = this;
-        this.$datepicker.find('.pre').on('click', function(){
-          _this.watchDate = _this.getPreMonth(_this.watchDate);
-          _this.setData();
-        });
-        this.$datepicker.find('.next').on('click', function(){
-          _this.watchDate = _this.getNextMonth(_this.watchDate);
-          _this.setData();
-        });
-        this.$datepicker.on('click', '.cur-month', function(){
-          _this.$target.val($(this).attr('data-date'))
-          _this.$datepicker.hide();
-        });
-        this.$target.on('click', function(e){
-          e.stopPropagation();
-          _this.$datepicker.show();
-        });
-        this.$datepicker.on('click', function(e){
-          e.stopPropagation();
-        });
-        $(window).on('click', function(){
-          _this.$datepicker.hide();
-        })
-      },
-
-      //获取date所在年月第一天的时间对象
-      getFirstDay: function(date){
-        var year = date.getFullYear(),
-            month = date.getMonth();
-        return newDate = new Date(year, month, 1);
-      },
-
-      //获取date所在月份最后一天的时间对象
-      //先获取当前月下一个月的第一天再减去一天的时间
-      getLastDay: function(date){
-        var nextMonthFirstDay = this.getNextMonth(date);
-        return new Date(nextMonthFirstDay.getTime() - 60*60*24*1000)
-      },
-
-      //获取date上个月第一天的时间对象
-      getPreMonth: function(date){
-        var year = date.getFullYear(),
-            month = date.getMonth();
-        month--;
-        if(month<0){
-          month = 11;
-          year--;
+        return {
+          //给jQuery对象添加方法
+          init: $.fn.DatePicker = function(){
+                  this.each(function(){
+                    new DatePicker($(this));
+                  });
+                }
         }
-        return new Date(year, month, 1);
-      },
-
-      //获取date下个月第一天的时间对象
-      getNextMonth: function(date){
-        var year = date.getFullYear(),
-            month = date.getMonth();
-        month++;
-        if(month>11){
-          month = 0;
-          year++;
-        }
-        return new Date(year, month, 1);
-      },
-
-      getYYMMDD: function(date){
-        var yy = date.getFullYear(),
-            mm = date.getMonth()+1,
-            dd = date.getDate();
-        return yy + "/" + this.toFixed(mm) + "/" + this.toFixed(dd);
-      },
-
-      toFixed: function(n){
-        //如果是一位数
-        return (n+'').length === 1? ('0'+n+'') : (n+'');
-      }
-    }
-
-    $.fn.DatePicker = function(){
-      this.each(function(){
-        new DatePicker($(this));
-      });
-    };
+    })()
 
     $(".date-input").DatePicker();
   </script>
