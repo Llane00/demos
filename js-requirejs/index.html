@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>requirejs-demo</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    ul,
+    ol {
+      list-style: none;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .clearfixed:after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+
+    .carousel {
+      position: relative;
+      margin: 0 auto;
+      width: 300px;
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .carousel .img-ct {
+      position: absolute;
+      left: -300px;
+      width: 12000px;
+    }
+
+    .carousel .img-ct>li {
+      float: left;
+    }
+
+    .carousel .img-ct a {
+      display: inline-block;
+    }
+
+    .carousel .img-ct img {
+      width: 300px;
+      height: 200px;
+    }
+
+    .carousel .btn-pre,
+    .carousel .btn-next {
+      position: absolute;
+      top: 50%;
+      display: inline-block;
+      margin-top: -14px;
+      width: 28px;
+      height: 28px;
+      color: #fff;
+      line-height: 28px;
+      text-align: center;
+      border-radius: 14px;
+      background: rgba(158,158,158,0.4);
+    }
+
+    .carousel .btn-pre {
+      left: 10px;
+    }
+
+    .carousel .btn-next {
+      right: 10px;
+    }
+
+    .bullet-ct {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .bullet {
+      display: inline-block;
+    }
+
+    .bullet>li {
+      display: inline-block;
+      width: 20px;
+      height: 6px;
+      border-radius: 3px;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    .bullet>li.active {
+      background: #999;
+    }
+
+		.btn-goTop {
+			margin: 0 auto 40px;
+			width: 100px;
+			height: 30px;
+			font-size: 20px;
+			text-align: center;
+			line-height: 30px;
+			color: pink;
+			border: 1px solid;
+			border-radius: 4px;
+		}
+  </style>
+</head>
+<body>
+  <!-- 轮播图 -->
+  <div class="carousel">
+    <ul class="img-ct clearfixed">
+      <li><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg" alt=""></a></li>
+      <li><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg" alt=""></a></li>
+      <li><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg" alt=""></a></li>
+      <li><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/4.jpg" alt=""></a></li>
+    </ul>
+    <a class="btn-pre" href="#">&lt;</a>
+    <a class="btn-next" href="#">&gt;</a>
+    <div class="bullet-ct">
+      <ul class="bullet">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 懒加载 -->
+  <div></div>
+
+  <!-- 回到顶部 -->
+  <div class="btn-goTop"></div>
+
+  <script data-main="main" src="./node_modules/requirejs/require.js"></script>
+</body>
+</html>
