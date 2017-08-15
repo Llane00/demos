@@ -16,7 +16,8 @@ require.config({
 })
 
 //加载模块
-require(['jquery', 'carousel', 'goTop'], function($, carousel,){
+require(['jquery', 'carousel', 'goTop', 'lazyLoad'], function($, carousel, goTop, lazyLoad){
   carousel.init($('.carousel'));
-  
+  goTop.init();
+  lazyLoad.init();
 })

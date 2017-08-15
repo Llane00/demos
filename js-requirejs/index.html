@@ -30,15 +30,15 @@
     .carousel {
       position: relative;
       margin: 0 auto;
-      width: 300px;
-      height: 200px;
+      width: 650px;
+      height: 340px;
       overflow: hidden;
     }
 
     .carousel .img-ct {
       position: absolute;
-      left: -300px;
-      width: 12000px;
+      left: -650px;
+      width: 3900px;
     }
 
     .carousel .img-ct>li {
@@ -50,8 +50,8 @@
     }
 
     .carousel .img-ct img {
-      width: 300px;
-      height: 200px;
+      width: 650px;
+      height: 340px;
     }
 
     .carousel .btn-pre,
@@ -101,17 +101,76 @@
       background: #999;
     }
 
-		.btn-goTop {
-			margin: 0 auto 40px;
-			width: 100px;
-			height: 30px;
-			font-size: 20px;
+    /* goTop */
+		div#btn-goTop {
+      position: fixed;
+      right: 40px;
+      bottom: 40px; 
+			width: 56px;
+			height: 56px;
+			font-size: 16px;
+      font-weight: bold;
 			text-align: center;
-			line-height: 30px;
-			color: pink;
-			border: 1px solid;
-			border-radius: 4px;
+			line-height: 56px;
+			color: #fff;
+      background: #249F5E;
+			border-radius: 50%;
+      cursor: pointer;
 		}
+
+    /* lazy-load */
+    .wrap {
+      margin: 0 auto;
+      max-width: 900px;
+    }
+
+    .wrap>#pic-ct {
+      position: relative;
+    }
+
+    .wrap #load{
+      margin: 18px auto;
+      width: 124px;
+      height: 34px;
+      font-size: 14px;
+      color: #fff;
+      text-align: center;
+      line-height: 34px;
+      background: #249F5E;
+      border-radius: 18px;
+      cursor: pointer;
+    }
+
+    #pic-ct>.item {
+      position: absolute;
+      margin: 10px;
+      width: 280px;
+      border: 1px solid #ddd;
+    }
+
+    #pic-ct>li.hidden {
+      display: hide;
+      margin: 10px;
+      width: 280px;
+      border: none;
+    }
+
+    #pic-ct>.item img {
+      margin: 10px;
+      width: 260px;
+    }
+
+    #pic-ct>.item h4 {
+      margin: 0 12px 0;
+      padding-bottom: 4px;
+      border-bottom: 1px solid #ddd;
+      
+    }
+
+    #pic-ct>.item p {
+      margin: 10px;
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
@@ -136,10 +195,12 @@
   </div>
 
   <!-- 懒加载 -->
-  <div></div>
-
-  <!-- 回到顶部 -->
-  <div class="btn-goTop"></div>
+  <div class="wrap">
+    <ul id="pic-ct">
+      <li class="item hidden"></li>
+    </ul>
+    <div id="load">查看更多</div>
+  </div>
 
   <script data-main="main" src="./node_modules/requirejs/require.js"></script>
 </body>

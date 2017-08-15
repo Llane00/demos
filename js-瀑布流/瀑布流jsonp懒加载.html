@@ -31,14 +31,14 @@
       position: relative;
     }
 
-    .wrap>#pic-ct>.item {
+    #pic-ct>.item {
       position: absolute;
       margin: 10px;
       width: 280px;
       border: 1px solid #ddd;
     }
 
-    #pic-ct>.item.hide {
+    #pic-ct>li.hidden {
       display: hide;
       margin: 10px;
       width: 280px;
@@ -81,6 +81,8 @@
     var nodeWidth = $(".item").outerWidth(true);
     var colNum = parseInt($("#pic-ct").width() / $(".item").outerWidth(true));
     for (var i = 0; i < colNum; i++) {
+      
+      
       colSumHeight[i] = 0;
     }
 
@@ -93,7 +95,8 @@
         isDataArrive = true;
         $.each(newsList, function (idx, news) {
           var $node = getNode(news)
-          $node.find("img").load(function () {
+          var img = 
+          $node.find("img").on('load', function () {
             $("#pic-ct").append($node);
             waterFullPlace($node)
           })
