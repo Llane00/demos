@@ -7,16 +7,16 @@ require.config({
   },
 
   shim: {
-    // 'shim-0':{
+     'shim-0':{
       //手动告诉如何找依赖，管理非AMD规范代码
       //depths depencenies
-      // deps: ['shim-1']
-    // }
+      deps: ['jquery']
+     }
   }
 })
 
 //加载模块
-require(['jquery', 'carousel', 'goTop', 'lazyLoad'], function($, carousel, goTop, lazyLoad){
+require(['jquery', 'carousel', 'goTop', 'lazyLoad','shim-0'], function($, carousel, goTop, lazyLoad){
   carousel.init($('.carousel'));
   goTop.init();
   lazyLoad.init();

@@ -5,203 +5,131 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>requirejs-demo</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    ul,
-    ol {
-      list-style: none;
-    }
-
-    a {
-      text-decoration: none;
-    }
-
-    .clearfixed:after {
-      content: '';
-      display: block;
-      clear: both;
-    }
-
-    .carousel {
-      position: relative;
-      margin: 0 auto;
-      width: 650px;
-      height: 340px;
-      overflow: hidden;
-    }
-
-    .carousel .img-ct {
-      position: absolute;
-      left: -650px;
-      width: 3900px;
-    }
-
-    .carousel .img-ct>li {
-      float: left;
-    }
-
-    .carousel .img-ct a {
-      display: inline-block;
-    }
-
-    .carousel .img-ct img {
-      width: 650px;
-      height: 340px;
-    }
-
-    .carousel .btn-pre,
-    .carousel .btn-next {
-      position: absolute;
-      top: 50%;
-      display: inline-block;
-      margin-top: -14px;
-      width: 28px;
-      height: 28px;
-      color: #fff;
-      line-height: 28px;
-      text-align: center;
-      border-radius: 14px;
-      background: rgba(158,158,158,0.4);
-    }
-
-    .carousel .btn-pre {
-      left: 10px;
-    }
-
-    .carousel .btn-next {
-      right: 10px;
-    }
-
-    .bullet-ct {
-      position: absolute;
-      bottom: 10px;
-      width: 100%;
-      text-align: center;
-    }
-
-    .bullet {
-      display: inline-block;
-    }
-
-    .bullet>li {
-      display: inline-block;
-      width: 20px;
-      height: 6px;
-      border-radius: 3px;
-      background: #fff;
-      cursor: pointer;
-    }
-
-    .bullet>li.active {
-      background: #999;
-    }
-
-    /* goTop */
-		div#btn-goTop {
-      position: fixed;
-      right: 40px;
-      bottom: 40px; 
-			width: 56px;
-			height: 56px;
-			font-size: 16px;
-      font-weight: bold;
-			text-align: center;
-			line-height: 56px;
-			color: #fff;
-      background: #249F5E;
-			border-radius: 50%;
-      cursor: pointer;
-		}
-
-    /* lazy-load */
-    .wrap {
-      margin: 0 auto;
-      max-width: 900px;
-    }
-
-    .wrap>#pic-ct {
-      position: relative;
-    }
-
-    .wrap #load{
-      margin: 18px auto;
-      width: 124px;
-      height: 34px;
-      font-size: 14px;
-      color: #fff;
-      text-align: center;
-      line-height: 34px;
-      background: #249F5E;
-      border-radius: 18px;
-      cursor: pointer;
-    }
-
-    #pic-ct>.item {
-      position: absolute;
-      margin: 10px;
-      width: 280px;
-      border: 1px solid #ddd;
-    }
-
-    #pic-ct>li.hidden {
-      display: hide;
-      margin: 10px;
-      width: 280px;
-      border: none;
-    }
-
-    #pic-ct>.item img {
-      margin: 10px;
-      width: 260px;
-    }
-
-    #pic-ct>.item h4 {
-      margin: 0 12px 0;
-      padding-bottom: 4px;
-      border-bottom: 1px solid #ddd;
-      
-    }
-
-    #pic-ct>.item p {
-      margin: 10px;
-      font-size: 14px;
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/font/iconfont.css">
 </head>
 <body>
-  <!-- 轮播图 -->
-  <div class="carousel">
-    <ul class="img-ct clearfixed">
-      <li><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg" alt=""></a></li>
-      <li><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg" alt=""></a></li>
-      <li><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg" alt=""></a></li>
-      <li><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/4.jpg" alt=""></a></li>
-    </ul>
-    <a class="btn-pre" href="#">&lt;</a>
-    <a class="btn-next" href="#">&gt;</a>
-    <div class="bullet-ct">
-      <ul class="bullet">
-        <li class="active"></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
+  <div class="header">
+    <!-- nav -->
+    <div class="navbar">
+      <div class="navbar-content clear">
+        <a class="navbar-brand" href="#page-top">News</a>
+        <ul>
+          <li><a href="#wrap">CONTENT</a></li>
+          <li><a href="#about">ABOUT</a></li>
+          <li><a href="#contact">CONTACT</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 
-  <!-- 懒加载 -->
-  <div class="wrap">
-    <ul id="pic-ct">
-      <li class="item hidden"></li>
-    </ul>
-    <div id="load">查看更多</div>
+  <div class="mian">
+    <!-- 轮播图 -->
+    <div class="carousel-ct">
+      <div class="carousel">
+        <ul class="img-ct clearfixed">
+          <li><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg" alt=""></a></li>
+          <li><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg" alt=""></a></li>
+          <li><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg" alt=""></a></li>
+          <li><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/4.jpg" alt=""></a></li> 
+          <!-- <li><a href="#"><img src="img/1.jpg" alt=""></a></li>
+          <li><a href="#"><img src="img/2.jpg" alt=""></a></li>
+          <li><a href="#"><img src="img/3.jpg" alt=""></a></li>
+          <li><a href="#"><img src="img/4.jpg" alt=""></a></li> -->
+        </ul>
+        <a class="btn-pre" href="#">
+          <span class="icon-leftArr iconfont"></span>
+        </a>
+        <a class="btn-next" href="#">
+          <span class="icon-rightArr iconfont"></span>
+        </a>
+        <div class="bullet-ct">
+          <ul class="bullet">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 懒加载 -->
+    <div id="wrap" class="wrap">
+      <ul id="pic-ct">
+        <li class="item hidden"></li>
+      </ul>
+      <div id="load">查看更多</div>
+    </div>
+
+    <!-- About -->
+    <div id="about" class="about">
+      <h2>ABOUT</h2>
+      <h3></h3>
+      <div class="row">
+        <ul>
+          <li>
+            <div class="timeline-img">
+              <img src="img/about-1.jpg" alt="">
+            </div>
+            <div class="timeline-panel">
+              <h4>2017</h4>
+              <h4>Beginnings</h4>
+              <p>Project start!</p>
+            </div>
+          </li>
+          <li>
+            <div class="timeline-img">
+              <h4>Be Part
+              <br>Of Our
+              <br>Story!</h4>
+            </div>
+            <div class="timeline-panel"></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <div id="contact" class="contact">
+      <div class="row">
+        <h2>CONTACT US</h2>
+        <h3>Lorem ipsum dolor sit amet consectetur.</h3>
+        <form class="clear" action="">
+          <div class="form-group">
+            <input type="text" placeholder="YOUR NAME*">
+            <input type="text" placeholder="YOUR EMAIL*">
+            <input type="text" placeholder="YOUR PHONE*">
+          </div>
+          <div class="form-group">
+            <textarea placeholder="YOUR MESSAGE*"></textarea>
+          </div>
+          <div class="form-send">
+            <input class="btn" type="button" value="SEND MESSAGE">
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 
+  <footer>
+    <div class="footer-item">
+      <span>Copyright © 2017</span>
+    </div>
+    <div class="footer-item">
+       <ul>
+          <li class="iconfont icon-twitter"></li>
+          <li class="iconfont icon-facebook"></li>
+          <li class="iconfont icon-linkedin"></li>
+        </ul>
+    </div>
+    <div class="footer-item footer-text">
+      <ul>
+        <li>Privacy Policy</li>
+        <li>Terms of Use</li>
+      </ul>
+    </div>
+  </footer>
   <script data-main="main" src="./node_modules/requirejs/require.js"></script>
 </body>
 </html>

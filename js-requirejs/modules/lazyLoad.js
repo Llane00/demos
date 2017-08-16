@@ -3,15 +3,8 @@ define('lazyLoad', ['jquery'], function(module, exports){
   var lazyLoad = (function(){
     function _lazyLoad(){
       this.init();
-      this.start();
       this.bind();
-      // var _this = this;
-      // $(window).on('scroll', function(){
-      //   if(_this.isVisible($("#load"))){
-      //     _this.start();
-      //   }
-      // });
-
+      this.start();
     }
 
     _lazyLoad.prototype = {
@@ -71,9 +64,11 @@ define('lazyLoad', ['jquery'], function(module, exports){
       getNode: function(item){
         var tpl = `
           <li class="item">
-            <a href="${item.url}" class="link"><img src="${item.img_url}" alt=""></a>
-            <h4 class="header">${item.short_name}</h4>
-            <P class="desp">${item.short_intro}</p>
+            <a href="${item.url}" class="link" target="_blank">
+              <img src="${item.img_url}" alt="">
+              <h4 class="header">${item.short_name}</h4>
+              <P class="desp">${item.short_intro}</p>
+            </a>
           </li>
         `;
         return $(tpl);

@@ -1,7 +1,6 @@
 define('carousel', ['jquery'], function(module, exports) {
 
     var Carousel = (function(){
-
       function _Carousel($ct){
         this.$ct = $ct;
         this.init();
