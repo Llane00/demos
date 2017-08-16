@@ -1,9 +1,9 @@
 //配置require
 require.config({
-  baseUrl: 'modules/',
+  baseUrl: './js/modules/',
   
   paths: {
-    'jquery': "/node_modules/jquery/dist/jquery.min"
+    'jquery': "../../node_modules/jquery/dist/jquery.min"
   },
 
   shim: {
