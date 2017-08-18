@@ -43,6 +43,8 @@ a {
 }
 
 a.navbar-brand {
+  display: inline-block;
+  padding: 6px;
   float: left;
   font-size: 28px;
   color: #fed136;
@@ -72,16 +74,16 @@ a.navbar-brand {
 .carousel {
   position: relative;
   margin: 0 auto;
-  width: 500px;
-  height: 300px;
+  width: 1000px;
+  height: 450px;
   overflow: hidden;
   background: #000;
 }
 
 .carousel .img-ct {
   position: absolute;
-  left: -500px;
-  width: 3000px;
+  left: -1000px;
+  width: 6000px;
   vertical-align: center;
 }
 
@@ -94,8 +96,8 @@ a.navbar-brand {
 }
 
 .carousel .img-ct img {
-  min-width: 500px;
-  height: 300px;   
+  min-width: 1000px;
+  height: 450px;   
 }
 
 .carousel .btn-pre,
@@ -103,11 +105,11 @@ a.navbar-brand {
   position: absolute;
   top: 50%;
   display: inline-block;
-  margin-top: -30px;
-  width: 30px;
-  height: 60px;
+  margin-top: -40px;
+  width: 40px;
+  height: 80px;
   color: #fff;
-  line-height: 60px;
+  line-height: 80px;
   text-align: center;
   background: rgba(158,158,158,0.4);
 }
@@ -122,7 +124,7 @@ a.navbar-brand {
 
 .bullet-ct {
   position: absolute;
-  bottom: 10px;
+  bottom: 14px;
   width: 100%;
   text-align: center;
 }
@@ -133,8 +135,9 @@ a.navbar-brand {
 
 .bullet>li {
   display: inline-block;
-  width: 20px;
-  height: 6px;
+  margin: 0 2px;
+  width: 24px;
+  height: 7px;
   border-radius: 3px;
   background: #fff;
   cursor: pointer;
