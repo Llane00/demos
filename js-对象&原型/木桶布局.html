@@ -47,13 +47,13 @@
 
 				$.each(imgs, function(index, value){
 					var img = new Image();
-					img.src = imgs[index];
+					img.src = value;
 					//查看图片地址
 					console.log(img.src);
 					img.onload = function(){
 						var imgInfo = {
-							img: $(img),
-							width: 100*img.width/img.height,
+							img: $(this),
+							width: 100*this.width/this.height,
 							height: 100
 						}
 						_this.render(imgInfo);
