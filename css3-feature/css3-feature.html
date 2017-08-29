@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>css3-feature</title>
+  <style>
+    .main>div {
+      margin: 10px;
+      width: 100px;
+      height: 100px;
+    }
+    .radius-1 {
+      background: yellowgreen;
+      border-radius: 4px;
+    }
+    .radius-2 {
+      background: yellowgreen;
+      border-radius: 50%;
+    }
+    .box-shadow {
+      background: yellowgreen;
+      box-shadow: 10px 10px 10px black;
+    }
+    .transform-scale1 {
+      background: yellowgreen;
+      transform: scale(1.1);
+    }
+    .transform-scale2 {
+      background: yellowgreen;
+      transform: scale(0.8);
+    }
+    .transform-translate {
+      background: yellowgreen;
+      transform: translate(200px,10px);
+    }
+    .transform-rotate {
+      background: yellowgreen;
+      transform: rotate(30deg);
+    }
+    .transform-translate3d {
+      background: yellowgreen;
+      transform: translate3d(200px, 10px, 100px);
+    }
+    .transform-rotate3d {
+      background: yellowgreen;
+      transform: rotate3d(200, 10, -60, 30deg);
+    }
+    .bg-linear-gradient {
+      background-image: linear-gradient(to right, yellowgreen, gray);
+    }
+    .bg-transition {
+      background: yellowgreen;
+      transition: 1.2s;
+    }
+    .bg-transition:hover {
+      background: yellow;
+    }
+    .animation-rotate {
+      background: yellowgreen;
+      animation: rotate1 1s infinite ease-out
+    }
+    @keyframes rotate1 {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="main">
+    <p>1. 圆角， 圆形</p>
+    <div class="radius-1"></div>
+    <div class="radius-2"></div>
+    <p>2. div 阴影</p>
+    <div class="box-shadow"></div>
+    <p>3. 2D 转换：放大、缩小、偏移、旋转</p>
+    <div class="transform-scale1"></div>
+    <div class="transform-scale2"></div>
+    <div class="transform-translate"></div>
+    <div class="transform-rotate"></div>
+    <p>4. 3D 转换：移动、旋转</p>
+    <div class="transform-translate3d"></div>
+    <div class="transform-rotate3d"></div>
+    <p>5. 背景色渐变</p>
+    <div class="bg-linear-gradient"></div>
+    <p>6. 过渡效果</p>
+    <div class="bg-transition"></div>
+    <p>7. 动画</p>
+    <div class="animation-rotate"></div>
+  </div>
+
+</body>
+</html>
