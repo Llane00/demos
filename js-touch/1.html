@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src='http://code.jquery.com/jquery-2.1.1.min.js'></script>
+  <style>
+    #foo {
+      width: 200px;
+      height: 200px;
+      background: red;
+    }
+  </style>
+</head>
+<body>
+  <div id="foo"></div>
+  <div id="output"></div>
+  <script>
+    var touchstartX = 0;
+    var touchstartY = 0;
+    var touchendX = 0;
+    var touchendY = 0;
+
+    $('#foo').on('touchstart', function(e){
+      touchstartX = e.screenX;
+      touchstartY = e.screenY;
+    }, false)
+
+    $('#foo').on('touchend', function(e){
+      touchendX = e.screenX;
+      touchendY = e.screenY;
+      handler();
+    }, false)
+
+    function handler(){
+      if(touchstartX < touchendX){
+        console.log('slide right!');
+      }
+      if(touchstartX > touchendX){
+        console.log('slide left!');
+      }
+      if(touchstartY < touchendY){
+        console.log('slide top!');
+      }
+      if(touchstartY > touchendY){
+        console.log('slide down!');
+      }
+      if(touchstartY == touchendY){
+        console.log('tap!');
+      }
+    }
+  </script>
+</body>
+</html>

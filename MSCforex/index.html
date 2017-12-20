@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>MSCforex</title>
+  <meta content="MSC外汇返佣,外汇返佣网,外汇返佣网站,MSCforex外汇返佣,MSCforex" name="keywords" />
+  <meta content="MSC外汇返佣网-亚洲最大外汇返佣网！外汇黄金最高返佣-返佣高达99%，真正降低交易成本！" name="description" />
+  <!-- Bootstrap CSS -->
+  <!-- <link href="./css/bootstrap.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="icon" href="./images/ico.png" type="image/gif" >
+  <style>
+
+    .col-xs-12.col-sm-9>.row{
+      border-left: 1px solid #eee;
+      border-top: 1px solid #eee;
+    }
+
+    .col-xs-6.col-lg-4 {
+      padding: 16px 20px;
+      border-right: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+    }
+
+    .col-xs-6.col-lg-4 p{
+      margin: 0;
+      font-size: 14px;
+      line-height: 28px;
+    }
+
+    .col-xs-6.col-lg-4 p:first-child{
+      padding-bottom: 14px;
+      border-bottom: 1px dotted #eee;
+    }
+
+    .col-xs-6.col-lg-4 p:last-child{
+      margin-top: 10px;
+    }
+
+    footer {
+      margin-top: 40px;
+      padding-top: 70px;
+      padding-bottom: 70px;
+      font-size: 12px;
+      color: #666;
+      text-align: center;
+      background: #fafafa;
+    }
+
+    /* bootstrap修改 */
+    .btn-group-sm>.btn, .btn-sm {
+      margin-top: 10px;
+    }
+
+    .jumbotron  {
+      padding: 20px !important;
+    }
+
+    .jumbotron p {
+      margin-bottom: 0px;
+      font-size: 13px;
+      line-height: 24px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container">
+      <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">MSC 外汇资讯</a>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#about">content</a></li>
+          <li><a href="#contact">News</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 轮播 -->
+  <div style="margin-top: 51px;">
+    <div id="myCarousel" class="carousel slide">
+        <!-- 轮播（Carousel）指标 -->
+        <ol class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+          <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>   
+        <!-- 轮播（Carousel）项目 -->
+        <div class="carousel-inner">
+          <div class="item active">
+            <img src="./images/slide1.jpg" alt="First slide">
+          </div>
+          <div class="item">
+            <img src="./images/slide2.jpg" alt="Second slide">
+          </div>
+          <div class="item">
+            <img src="./images/slide3.jpg" alt="Third slide">
+          </div>
+        </div>
+        <!-- 轮播（Carousel）导航 -->
+        <a class="carousel-control left" href="#myCarousel" 
+            data-slide="prev">&lsaquo;</a>
+        <a class="carousel-control right" href="#myCarousel" 
+            data-slide="next">&rsaquo;</a>
+      </div> 
+  </div>
+<!-- 轮播 -->
+
+
+  <div class="container" style="margin-top: 40px;">
+    <div class="row row-offcanvas row-offcanvas-right">
+      <div class="col-xs-12 col-sm-9">
+        
+      <!-- 链接 -->
+      <div class="container">
+        <div class="alert alert-danger" style="
+            font-size: 16px;
+        ">以下返佣均为原始点差不加点的前提下，目前有很多代理以超高返佣吸引眼球，实际只是先加点再返佣，并未真正帮助投资者降低交易成本。</div>
+            <div class="forex panel panel-default">
+                <div class="panel-body">
+                    <table class="table-responsive">
+                        <tbody><tr>
+                            <td width="18%" style="text-align: center">
+                                <img src="./images/res/forex.png" width="180" height="60">
+                                <p>嘉盛 FOREX</p>
+                            </td>
+                            <td width="20%" style="padding:0 10px 0 30px">
+                                <p>外汇返佣：<span class="blue-text">6.5美元/标准手</span></p>
+                                <p>黄金返佣：<span class="blue-text">8.5美元/100盎司</span></p>
+                                <p>白银返佣：<span class="blue-text">45美元/5000盎司</span></p>
+                            </td>
+                            <td width="20%" style="padding:0 10px 0 30px">
+                                <p>官方标准点差：<span class="blue-text">1.8</span></p>
+                                <p>实际成本点差：<span class="blue-text">1.2</span></p>
+                                <p>交易成本减免：<span class="blue-text">33%</span></p>
+                            </td>
+                            <td width="32%" style="padding:0 10px;text-align: justify">
+                                <p><span class="blue-text">FOREX是纽约证交所上市公司</span>，成立于1999年。2011年中国银监会批准嘉盛在北京设立代表处 。允许EA、对冲、剥头皮。欧美点差低至<span class="blue-text">1.6</span>、黄金低至<span class="blue-text">0.35</span>。最大杠杆<span class="blue-text">1:200</span>。</p>
+                            </td>
+                            <td width="10%" style="padding-left: 25px">
+                                <a href="/forex/real" class="btn btn-primary btn-sm">开户</a>
+                                <br><a href="/forex" class="btn btn-primary btn-sm">详情</a>
+                            </td>
+                        </tr>
+                    </tbody></table>
+                </div>
+            </div>
+            <div class="forex panel panel-default">
+                <div class="panel-body">
+                    <table class="table-responsive">
+                        <tbody><tr>
+                            <td width="18%" style="text-align: center">
+                                <img src="./images/res/fxpro.png" width="180" height="60">
+                                <p>浦汇 FxPro</p>
+                            </td>
+                            <td width="20%" style="padding:0 10px 0 30px">
+                                <p>外汇返佣：<span class="blue-text">8美元/标准手</span></p>
+                                <p>黄金返佣：<span class="blue-text">14美元/100盎司</span></p>
+                                <p>白银返佣：<span class="blue-text">55美元/5000盎司</span></p>
+                                <p>期货返佣：<span class="blue-text">10美元/标准手</span></p>
+                            </td>
+                            <td width="20%" style="padding:0 10px 0 30px">
+                                <p>官方标准点差：<span class="blue-text">1.5</span></p>
+                                <p>实际成本点差：<span class="blue-text">0.7</span></p>
+                                <p>交易成本减免：<span class="blue-text">55%</span></p>
+                            </td>
+                            <td width="32%" style="padding:0 10px;text-align: justify">
+                                <p>FxPro是来自塞浦路斯的老牌外汇经纪商，<span class="blue-text">受CYSEC、FCA监管</span>，杠杆高达<span class="blue-text">500</span>倍，最低开仓手数<span class="blue-text">0.01</span>，允许EA、对冲、剥头皮，最低开户<span class="blue-text">100</span>美元。浮动点差低至<span class="blue-text">0.9</span>。</p>
+                            </td>
+                            <td width="10%" style="padding-left: 25px">
+                                <a href="/fxpro/real/" class="btn btn-primary btn-sm">开户</a>
+                                <br><a href="/fxpro/" class="btn btn-primary btn-sm">详情</a>
+                            </td>
+                        </tr>
+                    </tbody></table>
+                </div>
+            </div>
+        
+        <div class="forex panel panel-default">
+                <div class="panel-body">
+                    <table class="table-responsive">
+                        <tbody><tr>
+                            <td width="18%" style="text-align: center">
+                                <img src="./images/res/thinkmarkets.png" width="180" height="60">
+                                <p>智汇 ThinkMarkets</p>
+                            </td>
+                            <td width="20%" style="padding:0 10px 0 30px">
+                                <p>外汇返佣：<span class="blue-text">4美元/标准手</span></p>
+                                <p>黄金返佣：<span class="blue-text">7.2美元/100盎司</span></p>
+                                <p>白银返佣：<span class="blue-text">40美元/5000盎司</span></p>
+                            </td>
+                            <td width="20%" style="padding:0 10px 0 30px">
+                                <p>官方标准点差：<span class="blue-text">0.8</span></p>
+                                <p>实际成本点差：<span class="blue-text">0.4</span></p>
+                                <p>交易成本减免：<span class="blue-text">50%</span></p>
+                            </td>
+                            <td width="32%" style="padding:0 10px;text-align: justify">
+                                <p>ThinkMarkets<span class="blue-text">极低的交易成本，极快的执行速度</span>，英国FCA监管号：629628。最大杠杠<span class="blue-text">1:400</span>，允许EA、对冲、剥头皮。最低开户<span class="blue-text">250</span>美元，可以银联、电汇。</p>
+                            </td>
+                            <td width="10%" style="padding-left: 25px">
+                                <a href="/thinkforex/real/" class="btn btn-primary btn-sm">开户</a>
+                                <br><a href="/thinkforex/" class="btn btn-primary btn-sm">详情</a>
+                            </td>
+                        </tr>
+                    </tbody></table>
+                </div>
+            </div>
+            
+            <div class="forex panel panel-default">
+                <div class="panel-body">
+                    <table class="table-responsive">
+                        <tbody><tr>
+                            <td width="18%" style="text-align: center">
+                                <img src="./images/res/gkfx.png" width="180" height="60">
+                                <p>捷凯金融 GKFX</p>
+                            </td>
+                            <td width="20%" style="padding:0 10px 0 30px">
+                                <p>外汇返佣：<span class="blue-text">5.6美元/标准手</span></p>
+                                <p>黄金返佣：<span class="blue-text">9.6美元/100盎司</span></p>
+                                <p>白银返佣：<span class="blue-text">美名量0.0028%</span></p>
+                            </td>
+                            <td width="20%" style="padding:0 10px 0 30px">
+                                <p>官方标准点差：<span class="blue-text">1.4</span></p>
+                                <p>实际成本点差：<span class="blue-text">0.8</span></p>
+                                <p>交易成本减免：<span class="blue-text">43%</span></p>
+                            </td>
+                            <td width="32%" style="padding:0 10px;text-align: justify">
+                                <p>GKFX受<span class="blue-text">FCA监管</span>，允许EA、对冲。最低开户<span class="blue-text">500</span>美元。杠杆可达到<span class="blue-text">400</span>倍，最小开仓0.01手，可以银联、电汇入金。</p>
+                            </td>
+                            <td width="10%" style="padding-left: 25px">
+                                <a href="/gkfx/real/" class="btn btn-primary btn-sm">开户</a>
+                                <br><a href="/gkfx/" class="btn btn-primary btn-sm">详情</a>
+                            </td>
+                        </tr>
+                    </tbody></table>
+                </div>
+            </div>
+            <div class="forex panel panel-default">
+                <div class="panel-body">
+                    <table class="table-responsive">
+                        <tbody><tr>
+                            <td width="18%" style="text-align: center">
+                                <img src="./images/res/lcg.png" width="180" height="60">
+                                <p>LCG</p>
+                            </td>
+                            <td width="20%" style="padding:0 10px 0 30px">
+                                <p>欧美返佣：<span class="blue-text">0.5点/标准手</span></p>
+                                <p>镑美返佣：<span class="blue-text">0.6点/标准手</span></p>
+                                <p>黄金返佣：<span class="blue-text">12美元/100盎司</span></p>
+                                <p>白银返佣：<span class="blue-text">40美元/5000盎司</span></p>
+                            </td>
+                            <td width="20%" style="padding:0 10px 0 30px">
+                                <p>官方标准点差：<span class="blue-text">1.4</span></p>
+                                <p>实际成本点差：<span class="blue-text">0.9</span></p>
+                                <p>交易成本减免：<span class="blue-text">35%</span></p>
+                            </td>
+                            <td width="32%" style="padding:0 10px;text-align: justify">
+                                <p><span class="blue-text">LCG是伦交所上市公司受FCA监管，监管号：182110</span>，允许EA、对冲、剥头皮。最低开户<span class="blue-text">100</span>美元。最大杠杠<span class="blue-text">1:500</span>，欧美点差低至1.4，经典账户最小开仓0.01。多种入金方式，银联、电汇入金、Skill等。</p>
+                            </td>
+                            <td width="10%" style="padding-left: 25px">
+                                <a href="/lcg/real/" class="btn btn-primary btn-sm">开户</a>
+                                <br><a href="/lcg/" class="btn btn-primary btn-sm">详情</a>
+                            </td>
+                        </tr>
+                    </tbody></table>
+                </div>
+            </div>
+            <div class="forex panel panel-default">
+                <div class="panel-body">
+                    <table class="table-responsive">
+                        <tbody><tr>
+                            <td width="18%" style="text-align: center">
+                                <img src="./images/res/aetos.png" width="180" height="60">
+                                <p>AETOS</p>
+                            </td>
+                            <td width="20%" style="padding:0 10px 0 30px">
+                                <p>欧美返佣：<span class="blue-text">10.8美元/标准手</span></p>
+                                <p>外汇返佣：<span class="blue-text">13.5美元/标准手</span></p>
+                                <p>黄金返佣：<span class="blue-text">18美元/100盎司</span></p>
+                                <p>白银返佣：<span class="blue-text">45美元/5000盎司</span></p>
+                            </td>
+                            <td width="20%" style="padding:0 10px 0 30px">
+                                <p>官方标准点差：<span class="blue-text">1.8</span></p>
+                                <p>实际成本点差：<span class="blue-text">0.72</span></p>
+                                <p>交易成本减免：<span class="blue-text">60%</span></p>
+                            </td>
+                            <td width="32%" style="padding:0 10px;text-align: justify">
+                                <p><span class="blue-text">AETOS艾拓思资本受FCA监管号：592778，ASIC监管号：313016</span>，平台允许EA、对冲、剥头皮。最低开户<span class="blue-text">250</span>美元。最大杠杠<span class="blue-text">1:400</span>，欧美点差1.8，最小开仓0.01。多种入金方式，银联、电汇入金、Skill等。</p>
+                            </td>
+                            <td width="10%" style="padding-left: 25px">
+                                <a href="/aetos/real/" class="btn btn-primary btn-sm">开户</a>
+                                <br><a href="/aetos/" class="btn btn-primary btn-sm">详情</a>
+                            </td>
+                        </tr>
+                    </tbody></table>
+                </div>
+            </div>
+          
+          <div class="forex panel panel-default">
+                  <div class="panel-body">
+                      <table class="table-responsive">
+                          <tbody><tr>
+                              <td width="18%" style="text-align: center">
+                                  <img src="./images/res/axitrade.png" width="180" height="60">
+                                  <p>AxiTrader</p>
+                              </td>
+                              <td width="20%" style="padding:0 10px 0 30px">
+                                  <p>外汇返佣：<span class="blue-text">0.56点/标准手</span></p>
+                                  <p>黄金返佣：<span class="blue-text">14美元/100盎司</span></p>
+                                  <p>白银返佣：<span class="blue-text">80美元/5000盎司</span></p>
+                                  <p>原油返佣：<span class="blue-text">8美元/标准手</span></p>
+                              </td>
+                              <td width="20%" style="padding:0 10px 0 30px">
+                                  <p>官方标准点差：<span class="blue-text">1.3</span></p>
+                                  <p>实际成本点差：<span class="blue-text">0.74</span></p>
+                                  <p>交易成本减免：<span class="blue-text">43%</span></p>
+                              </td>
+                              <td width="32%" style="padding:0 10px;text-align: justify">
+                                  <p><span class="blue-text">AxiTrader受FCA监管号：509746，ASIC监管号：318232</span>，平台允许EA、对冲、剥头皮。最低开户<span class="blue-text">200</span>美元。最大杠杠<span class="blue-text">1:400</span>，欧美点差1.3，最小开仓0.01。多种入金方式，银联、电汇入金、Skill等。</p>
+                              </td>
+                              <td width="10%" style="padding-left: 25px">
+                                  <a href="/axitrader/real/" class="btn btn-primary btn-sm">开户</a>
+                                  <br><a href="/axitrader/" class="btn btn-primary btn-sm">详情</a>
+                              </td>
+                          </tr>
+                      </tbody></table>
+                  </div>
+              </div>
+          <div class="forex panel panel-default">
+                  <div class="panel-body">
+                      <table class="table-responsive">
+                          <tbody><tr>
+                              <td width="18%" style="text-align: center">
+                                  <img src="./images/res/kvb.png" width="180" height="60">
+                                  <p>KVB 昆仑国际</p>
+                              </td>
+                              <td width="20%" style="padding:0 10px 0 30px">
+                                  <p>外汇返佣：<span class="blue-text">8美元/标准手</span></p>
+                                  <p>黄金返佣：<span class="blue-text">16美元/100盎司</span></p>
+                                  <p>白银返佣：<span class="blue-text">16美元/5000盎司</span></p>
+                                  <p>指数返佣：<span class="blue-text">4美元/标准手</span></p>
+                              </td>
+                              <td width="20%" style="padding:0 10px 0 30px">
+                                  <p>官方标准点差：<span class="blue-text">1.3</span></p>
+                                  <p>实际成本点差：<span class="blue-text">0.5</span></p>
+                                  <p>交易成本减免：<span class="blue-text">62%</span></p>
+                              </td>
+                              <td width="32%" style="padding:0 10px;text-align: justify">
+                                  <p>KVB昆仑国际，香港联合交易所上市（港股代号：08077）。<span class="blue-text">ASIC、香港证监会，中国银监会等监管</span>，欧美最小点差1.3点。平台允许EA、对冲、剥头皮。MT4最低开户<span class="blue-text">3000</span>美元。最大杠杠<span class="blue-text">1:200</span>。</p>
+                              </td>
+                              <td width="10%" style="padding-left: 25px">
+                                  <a href="/kvb/real/" class="btn btn-primary btn-sm">开户</a>
+                                  <br><a href="/kvb/" class="btn btn-primary btn-sm">详情</a>
+                              </td>
+                          </tr>
+                      </tbody></table>
+                  </div>
+              </div>
+          <div class="forex panel panel-default">
+                  <div class="panel-body">
+                      <table class="table-responsive">
+                          <tbody><tr>
+                              <td width="18%" style="text-align: center">
+                                  <img src="./images/res/avatrade.png" width="180" height="60">
+                                  <p>AvaTrade爱华</p>
+                              </td>
+                              <td width="20%" style="padding:0 10px 0 30px">
+                                  <p>外汇返佣：<span class="blue-text">32%点差</span></p>
+                                  <p>黄金返佣：<span class="blue-text">32%点差</span></p>
+                                  <p>白银返佣：<span class="blue-text">32%点差</span></p>
+                              </td>
+                              <td width="20%" style="padding:0 10px 0 30px">
+                                  <p>官方标准点差：<span class="blue-text">1.3</span></p>
+                                  <p>实际成本点差：<span class="blue-text">0.5</span></p>
+                                  <p>交易成本减免：<span class="blue-text">62%</span></p>
+                              </td>
+                              <td width="32%" style="padding:0 10px;text-align: justify">
+                                  <p>AvaTrade爱华，<span class="blue-text">ASIC：406684、FSA：1662等监管</span>，欧美最小点差1.3点。平台允许EA、对冲、剥头皮。最低开户<span class="blue-text">无限制</span>。最高<span class="blue-text">400倍杠杠</span>。</p>
+                              </td>
+                              <td width="10%" style="padding-left: 25px">
+                                  <a href="/avatrade/real/" class="btn btn-primary btn-sm">开户</a>
+                                  <br><a href="/avatrade/" class="btn btn-primary btn-sm">详情</a>
+                              </td>
+                          </tr>
+                      </tbody></table>
+                  </div>
+              </div>
+          <div class="forex panel panel-default">
+                  <div class="panel-body">
+                      <table class="table-responsive">
+                          <tbody><tr>
+                              <td width="18%" style="text-align: center">
+                                  <img src="./images/res/icmarkets.png" width="180" height="60">
+                                  <p>IC Markets</p>
+                              </td>
+                              <td width="20%" style="padding:0 10px 0 30px">
+                                  <p>标准账户：<span class="blue-text">3.2点</span></p>
+                                  <p>ECN账户：<span class="blue-text">1.6美元/标准手</span></p>
+                              </td>
+                              <td width="20%" style="padding:0 10px 0 30px">
+                                  <p>官方标准点差：<span class="blue-text">1.0</span></p>
+                                  <p>实际成本点差：<span class="blue-text">0.68</span></p>
+                                  <p>交易成本减免：<span class="blue-text">32%</span></p>
+                              </td>
+                              <td width="32%" style="padding:0 10px;text-align: justify">
+                                  <p>IC Markets真正的ECN交易商，<span class="blue-text">ASIC监管：335692</span>，欧美平均0.1点，黄金平均1.3点，中美专线网络，成交稳定迅速，出入金免手续费。平台允许EA、对冲、剥头皮。最低开户<span class="blue-text">200</span>美元。最大杠杠<span class="blue-text">1:500</span>。</p>
+                              </td>
+                              <td width="10%" style="padding-left: 25px">
+                                  <a href="/icmarkets/real/" class="btn btn-primary btn-sm">开户</a>
+                                  <br><a href="/icmarkets/" class="btn btn-primary btn-sm">详情</a>
+                              </td>
+                          </tr>
+                      </tbody></table>
+                  </div>
+              </div>
+          
+              <div class="forex panel panel-default">
+                  <div class="panel-body">
+                      <table class="table-responsive">
+                          <tbody><tr>
+                              <td width="18%" style="text-align: center">
+                                  <img src="./images/res/ifx.png" width="180" height="60">
+                                  <p>爱福斯 IFX</p>
+                              </td>
+                              <td width="20%" style="padding:0 10px 0 30px">
+                                  <p>外汇返佣：<span class="blue-text">6美元/标准手</span></p>
+                                  <p>黄金及CFD返佣：<span class="blue-text">25%点差</span></p>
+                              </td>
+                              <td width="20%" style="padding:0 10px 0 30px">
+                                  <p>官方标准点差：<span class="blue-text">2</span></p>
+                                  <p>实际成本点差：<span class="blue-text">1.4</span></p>
+                                  <p>交易成本减免：<span class="blue-text">30%</span></p>
+                              </td>
+                              <td width="32%" style="padding:0 10px;text-align: justify">
+                                  <p>IFX受<span class="blue-text">英国FCA监管</span>，监管号：<span class="blue-text">113942</span>。1995年开始从事外汇经纪商业务，2005年亚 洲客服中心落户上海。最大<span class="blue-text">1:400</span>倍杠杆，允许EA、对冲、剥头皮。可以银联电汇入金。</p>
+                              </td>
+                              <td width="10%" style="padding-left: 25px">
+                                  <a href="/ifx-fxsol/news/2017/328866.html" class="btn btn-primary btn-sm">开户</a>
+                                  <br><a href="/ifx-fxsol/news/2017/328866.html" class="btn btn-primary btn-sm">详情</a>
+                              </td>
+                          </tr>
+                      </tbody></table>
+                  </div>
+              </div>
+              
+              
+      </div>
+      <!-- 链接 --> 
+        
+      <!-- 风险提示 -->
+      <div class="container">
+        <div class="jumbotron">
+          <!-- <h1>MSCforex</h1> -->
+          <p>风险提示：<br>黄金、外汇保证金交易存在极高的风险，未必适合所有的投资者，不要相信任何高额投资收益的诱导!使用杠杆比率来进行外汇操作互有利弊，在决定投资黄金、外汇等市场前，应仔细考虑您的经验水平和承担风险的能力，投资导致的损失有可能超过存入的资金，因此，您不应该以不能承受全部损失的资金来投资带有杠杆比率的金融产品！谨慎投资，责任自负！MSC外汇资讯网只提供投资咨询、降低客户交易成本，不邀约客户投资黄金、外汇等金融产品，不接触客户资金，不推荐交易商平台，客户自行选择，交易商的任何行为均与本网无关！在本网咨询投资等同认可以上声明!您开户是直接到您自己选择的券商平台官网进行的（包括您的资料和资金），我们不承担客户与平台官方之间的交易争议及交易平台问题造成经济损失的责任，万一出现纠纷，您应直接追究外汇交易商的责任，与本网无关!	...</p>
+        </div>
+      </div>
+
+      
+      </div><!--/.col-xs-12.col-sm-9-->
+
+      <!-- <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+        <div class="list-group">
+          <a href="#" class="list-group-item active">市场新闻</a>
+          <a href="" class="list-group-item">News1</a>
+          <a href="" class="list-group-item">News2</a>
+          <a href="" class="list-group-item">News3</a>
+          <a href="" class="list-group-item">News4</a>
+          <a href="" class="list-group-item">News5</a>
+          <a href="" class="list-group-item">News6</a>
+          <a href="" class="list-group-item">News7</a>
+          <a href="" class="list-group-item">News8</a>
+          <a href="" class="list-group-item">News9</a>
+          <a href="" class="list-group-item">News10</a>
+          <a href="" class="list-group-item">News11</a>
+          <a href="" class="list-group-item">News12</a>
+          <a href="" class="list-group-item">News13</a>
+          <a href="" class="list-group-item">News14</a>
+          <a href="" class="list-group-item">News15</a>
+        </div>
+      </div>
+
+      <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+          <div class="list-group">
+            <a href="#" class="list-group-item active">more</a>
+            <a href="" class="list-group-item">1</a>
+            <a href="" class="list-group-item">2</a>
+            <a href="" class="list-group-item">3</a>
+            <a href="" class="list-group-item">4</a>
+            <a href="" class="list-group-item">5</a>
+          </div>
+        </div> -->
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div>
+              <span class="type--fine-print">©<span class="update-year">2017</span> MSCforex.</span>
+          </div>
+        <div>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdn.bootcss.com/holder/2.9.4/holder.min.js"></script>
+  <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script>
+    $(function(){
+      $("#slidershow").carousel({
+        interval:2000
+      });
+      $("#slidershow a.left").click(function(){
+        $(".carousel").carousel("prev");
+      });
+      $("#slidershow a.right").click(function(){
+        $(".carousel").carousel("next");
+      });
+    });
+  </script>      
+</body>
+</html>
